@@ -1,0 +1,22 @@
+-- Basic
+require("core.plugins")
+require("core.mappings")
+require("core.configs")
+require("core.colorscheme")
+
+-- Plugins
+require("plugins.neotree")
+require("plugins.treesitter")
+require("plugins.lsp")
+require("plugins.cmp")
+require("plugins.mason")
+require("plugins.telescope")
+require("plugins.comments")
+require("plugins.toggleterm")
+require("plugins.outline")
+require("plugins.lualine")
+require("plugins.buffline")
+require("plugins.ibl")
+require("plugins.nullls")
+require("plugins.autopairs")
+require("plugins.nvim-ts-autotag")
