@@ -1,17 +1,21 @@
 vim.g.mapleader = " "
 
+local map = vim.api.nvim_set_keymap
+
 -- NeoTree
-vim.keymap.set('n', '<Leader>e', ':Neotree toggle<CR>')
+map("n", "<Leader>e", ":Neotree toggle<CR>", { noremap = true, silent = true })
 
 -- ToggleTerm
-vim.keymap.set('n', '<F7>', ':ToggleTerm direction=float<CR>')
+map("n", "<F7>", ":ToggleTerm direction=float<CR>", { noremap = true, silent = true })
 
 -- Save / Exit
-vim.keymap.set('n', '<c-s>', ':w<CR>')
-vim.keymap.set('n', '<c-q>', ':q<CR>')
+map("n", "<c-s>", ":w<CR>", { noremap = true, silent = true })
+map("n", "<c-q>", ":q<CR>", { noremap = true, silent = true })
 
 -- TAB SWITCH
-vim.keymap.set('n', '<Tab>', ':BufferLineCycleNext<CR>')
-vim.keymap.set('n', '<s-Tab>', ':BufferLineCyclePrev<CR>')
-vim.keymap.set('n', '<leader>x', ':bdelete<CR>:bNext<CR>')
+map("n", "<Tab>", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
+map("n", "<s-Tab>", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
+map("n", "<Leader>x", ":bdelete<CR>:bNext<CR>", { noremap = true, silent = true })
 
+map("n", "<c-right>", ":vertical resize -5<CR>", { noremap = true, silent = true })
+map("n", "<c-left>", ":vertical resize +5<CR>", { noremap = true, silent = true })

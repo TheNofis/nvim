@@ -61,7 +61,16 @@ require("lazy").setup({
 			"nvimtools/none-ls.nvim",
 		},
 		config = function()
-			require("plugins.nullls") -- require your null-ls config here (example below)
+			require("plugins.nullls")
 		end,
 	},
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+			"rcarriga/nvim-notify",
+		},
+	},
+	{ "folke/which-key.nvim" },
 })
