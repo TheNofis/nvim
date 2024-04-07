@@ -5,9 +5,6 @@ local map = vim.api.nvim_set_keymap
 -- NeoTree
 map("n", "<Leader>e", ":Neotree toggle<CR>", { noremap = true, silent = true })
 
--- ToggleTerm
-map("n", "<F7>", ":ToggleTerm direction=float<CR>", { noremap = true, silent = true })
-
 -- Save / Exit
 map("n", "<c-s>", ":w<CR>", { noremap = true, silent = true })
 map("n", "<c-q>", ":q<CR>", { noremap = true, silent = true })
