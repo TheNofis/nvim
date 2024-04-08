@@ -16,3 +16,7 @@ map("n", "<Leader>x", ":bdelete<CR>:bNext<CR>", { noremap = true, silent = true 
 
 map("n", "<c-right>", ":vertical resize -5<CR>", { noremap = true, silent = true })
 map("n", "<c-left>", ":vertical resize +5<CR>", { noremap = true, silent = true })
+
+-- BUFFER SWITCH
+map("n", "<c-h>", ":wincmd h<CR>", { noremap = true, silent = true })
+map("n", "<c-l>", ":wincmd l<CR>", { noremap = true, silent = true })

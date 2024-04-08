@@ -37,7 +37,6 @@ require("lualine").setup({
 		lualine_b = {
 			"filename",
 			"branch",
-			-- require("lsp-progress").progress
 		},
 		lualine_c = { "fileformat" },
 		lualine_x = {},
