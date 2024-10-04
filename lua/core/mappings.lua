@@ -21,6 +21,6 @@ map("n", "<c-left>", ":vertical resize +5<CR>", { noremap = true, silent = true 
 map("n", "<c-h>", ":wincmd h<CR>", { noremap = true, silent = true })
 map("n", "<c-l>", ":wincmd l<CR>", { noremap = true, silent = true })
 
-vim.keymap.set("i", "<Right>", function()
+vim.keymap.set("i", "<Leader><Tab>", function()
 	return vim.fn["codeium#Accept"]()
 end, { expr = true, silent = true })
