@@ -7,8 +7,7 @@ require("bufferline").setup({
 		offsets = {
 			{
 				filetype = "neo-tree",
-				text = "File Explorer",
-				separator = true,
+				separator = false,
 				padding = 0,
 			},
 		},
