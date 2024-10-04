@@ -20,3 +20,7 @@ map("n", "<c-left>", ":vertical resize +5<CR>", { noremap = true, silent = true 
 -- BUFFER SWITCH
 map("n", "<c-h>", ":wincmd h<CR>", { noremap = true, silent = true })
 map("n", "<c-l>", ":wincmd l<CR>", { noremap = true, silent = true })
+
+vim.keymap.set("i", "<Right>", function()
+	return vim.fn["codeium#Accept"]()
+end, { expr = true, silent = true })

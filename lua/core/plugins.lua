@@ -76,4 +76,8 @@ require("lazy").setup({
 		},
 	},
 	{ "folke/which-key.nvim" },
+	{
+		"Exafunction/codeium.vim",
+		lazy = false,
+	},
 })

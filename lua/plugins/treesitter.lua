@@ -1,10 +1,9 @@
 require("nvim-treesitter.configs").setup({
-	ensure_installed = { "typescript", "lua", "go", "tsx", "javascript" },
+	sync_install = true,
+	auto_install = true,
+	ensure_installed = { "typescript", "lua", "go", "tsx", "javascript", "html" },
 	context_commentstring = { enable = true, enable_autocmd = false },
 	highlight = {
-		enable = true,
-	},
-	autotag = {
 		enable = true,
 	},
 	incremental_selection = { enable = true },
