@@ -8,7 +8,7 @@ require("bufferline").setup({
 			{
 				filetype = "neo-tree",
 				separator = false,
-				padding = 0,
+				padding = 1,
 			},
 		},
 
