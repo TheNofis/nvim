@@ -13,7 +13,7 @@ require("mason-lspconfig").setup({
 	ensure_installed = {
 		"denols",
 		"lua_ls",
-		"ts_ls",
+		"tsserver",
 		"cssls",
 		"clangd",
 	},
