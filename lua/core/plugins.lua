@@ -87,4 +87,8 @@ require("lazy").setup({
 			require("colorizer").setup()
 		end,
 	},
+	-- COLORIZE {} () <>
+	{
+		"HiPhish/rainbow-delimiters.nvim",
+	},
 })
