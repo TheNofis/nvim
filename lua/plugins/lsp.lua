@@ -31,6 +31,13 @@ lspconfig.rust_analyzer.setup({
 		},
 	},
 })
+
+lspconfig.clangd.setup({
+	on_attach = function(client, bufnr)
+		client.server_capabilities.signatureHelpProvider = false
+	end,
+	capabilities = capabilities,
+})
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set("n", "<leader>lD", vim.diagnostic.open_float)

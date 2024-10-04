@@ -15,6 +15,7 @@ require("mason-lspconfig").setup({
 		"lua_ls",
 		"ts_ls",
 		"cssls",
+		"clangd",
 	},
 })
 
@@ -26,5 +27,6 @@ require("mason-null-ls").setup({
 		"stylua",
 		"prettierd",
 		"fustfmt",
+		"clang-format",
 	},
 })

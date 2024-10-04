@@ -34,6 +34,12 @@ null_ls.setup({
 				"handlebars",
 			},
 		}),
+		null_ls.builtins.formatting.clang_format.with({
+			filetypes = {
+				"c",
+				"cpp",
+			},
+		}),
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then
