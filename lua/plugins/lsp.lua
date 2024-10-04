@@ -13,7 +13,7 @@ lspconfig.cssls.setup({
 lspconfig.html.setup({
 	filetypes = { "javascript", "javascriptreact", "python", "typescript", "typescriptreact" },
 })
-lspconfig.tsserver.setup({})
+lspconfig.ts_ls.setup({})
 lspconfig.prismals.setup({})
 lspconfig.cssls.setup({
 	capabilities = capabilities,
