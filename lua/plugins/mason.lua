@@ -27,6 +27,5 @@ require("mason-null-ls").setup({
 		"stylua",
 		"prettierd",
 		"fustfmt",
-		"clang-format",
 	},
 })
