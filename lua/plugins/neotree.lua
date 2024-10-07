@@ -41,7 +41,7 @@ require("neo-tree").setup({
 		},
 	},
 	source_selector = {
-		winbar = true,
+		statusline = true,
 		sources = {
 			{ source = "filesystem", display_name = " 󰉓 File" },
 			{ source = "git_status", display_name = " 󰊢 Git" },
@@ -49,4 +49,5 @@ require("neo-tree").setup({
 		content_layout = "center",
 	},
 	enable_git_status = true,
+	close_if_last_window = true,
 })
