@@ -17,7 +17,9 @@ require("onedark").setup({
 	lualine = {
 		transparent = false, -- lualine center bar transparency
 	},
-	colors = {}, -- Override default colors
+	colors = {
+		bg1 = "#282c34",
+	}, -- Override default colors
 	highlights = {}, -- Override highlight groups
 	diagnostics = {
 		darker = true, -- darker colors for diagnostic
@@ -25,6 +27,5 @@ require("onedark").setup({
 		background = true, -- use background color for virtual text
 	},
 })
-
 vim.cmd.colorscheme("onedark")
 vim.cmd("set noshowmode showcmd")
