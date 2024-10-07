@@ -32,5 +32,5 @@
 
 ### 4. Install new dots
    ```bash
-   git clone https://github.com/TheNofis/nvim ~/.config/nvim && nvim
+   git clone https://github.com/TheNofis/nvim ~/.config/nvim && rm -rf ~/.config/nvim/.git && nvim
    ```
