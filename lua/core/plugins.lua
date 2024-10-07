@@ -55,7 +55,9 @@ require("lazy").setup({
 		},
 	},
 	{ "akinsho/bufferline.nvim", dependencies = { "nvim-tree/nvim-web-devicons" } },
-	{ "lukas-reineke/indent-blankline.nvim" },
+	{
+		"lukas-reineke/indent-blankline.nvim",
+	},
 	{
 		"jay-babu/mason-null-ls.nvim",
 		event = { "BufReadPre", "BufNewFile" },
@@ -76,19 +78,20 @@ require("lazy").setup({
 		},
 	},
 	{ "folke/which-key.nvim" },
+	-- AI AUTO COMPLITE
 	{
 		"Exafunction/codeium.vim",
 		lazy = false,
 	},
 	{
 		"norcalli/nvim-colorizer.lua",
-		config = function()
-			vim.opt.termguicolors = true
-			require("colorizer").setup()
-		end,
 	},
 	-- COLORIZE {} () <>
 	{
 		"HiPhish/rainbow-delimiters.nvim",
+	},
+	-- SELEACT ALL WORD
+	{
+		"RRethy/vim-illuminate",
 	},
 })
