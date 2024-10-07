@@ -7,20 +7,13 @@ require("bufferline").setup({
 		offsets = {
 			{
 				filetype = "neo-tree",
-				separator = false,
-				padding = 1,
+				text = "Nvim Tree",
+				highlight = "",
 			},
 		},
-
 		indicator = {
 			icon = "▋",
-			-- icon = " ✔ ", -- this should be omitted if indicator style is not 'icon'
 			style = "icon",
-		},
-		hover = {
-			enabled = true,
-			delay = 200,
-			reveal = { "close" },
 		},
 
 		diagnostics = "nvim_lsp",
