@@ -23,7 +23,7 @@ require("mason-lspconfig").setup({
 require("mason-null-ls").setup({
 	ensure_installed = {
 		"css-variables-language-server",
-		"eslint_d",
+		-- "eslint_d",
 		"stylua",
 		"prettierd",
 		"fustfmt",
