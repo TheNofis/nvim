@@ -91,7 +91,7 @@ require("lazy").setup({
 		"HiPhish/rainbow-delimiters.nvim",
 	},
 	-- SELEACT ALL WORD
-	{
-		"RRethy/vim-illuminate",
-	},
+	-- {
+	-- 	"RRethy/vim-illuminate",
+	-- },
 })
