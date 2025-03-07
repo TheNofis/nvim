@@ -16,6 +16,7 @@ require("mason-lspconfig").setup({
 		"ts_ls",
 		"cssls",
 		"clangd",
+		"prismals",
 	},
 })
 
