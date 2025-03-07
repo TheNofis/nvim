@@ -26,6 +26,7 @@ map("n", "<c-l>", ":wincmd l<CR>", { noremap = true, silent = true })
 map("n", "<Leader>gs", ":Telescope git_status<CR>", { noremap = true, silent = true })
 map("n", "<Leader>gc", ":Telescope git_commits<CR>", { noremap = true, silent = true })
 
+map("n", "<Esc>", ":nohlsearch<Bar>:echo<CR>", { silent = true })
 -- CODEIUM
 vim.keymap.set("i", "<Leader><Tab>", function()
 	return vim.fn["codeium#Accept"]()
