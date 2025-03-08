@@ -43,7 +43,6 @@ require("lazy").setup({
 		},
 		opts = function()
 			return {
-				-- ...
 				formatting = {
 					format = require("lspkind").cmp_format({
 						before = require("tailwind-tools.cmp").lspkind_format,
@@ -92,20 +91,45 @@ require("lazy").setup({
 			"MunifTanjim/nui.nvim",
 			"rcarriga/nvim-notify",
 		},
+		config = function()
+			require("noice").setup({
+				routes = {
+					{
+						filter = {
+							event = "msg_show",
+							kind = "",
+							find = "written", -- Уведомления о сохранении файла
+						},
+						opts = { skip = true },
+					},
+					{
+						filter = {
+							event = "notify",
+							find = "Error", -- Сообщения об ошибках
+						},
+						opts = { skip = true },
+					},
+					{
+						filter = {
+							event = "msg_show",
+							find = "E21: Cannot make changes", -- Сообщения об ошибках
+						},
+						opts = { skip = true },
+					},
+				},
+			})
+		end,
 	},
 	{ "folke/which-key.nvim" },
+
 	-- AI AUTO COMPLITE
-	{
-		"Exafunction/codeium.vim",
-		lazy = false,
-	},
-	{
-		"norcalli/nvim-colorizer.lua",
-	},
+	{ "Exafunction/codeium.vim", lazy = false },
+
 	-- COLORIZE {} () <>
-	{
-		"HiPhish/rainbow-delimiters.nvim",
-	},
+	{ "norcalli/nvim-colorizer.lua" },
+	{ "HiPhish/rainbow-delimiters.nvim" },
+
+	-- Renamer + Outline
 	{
 		"nvimdev/lspsaga.nvim",
 		config = function()
@@ -147,8 +171,4 @@ require("lazy").setup({
 		},
 		opts = {}, -- your configuration
 	},
-	-- SELEACT ALL WORD
-	-- {
-	-- 	"RRethy/vim-illuminate",
-	-- },
 })
