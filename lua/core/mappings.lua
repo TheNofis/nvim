@@ -27,6 +27,11 @@ map("n", "<Leader>gs", ":Telescope git_status<CR>", { noremap = true, silent = t
 map("n", "<Leader>gc", ":Telescope git_commits<CR>", { noremap = true, silent = true })
 
 map("n", "<Esc>", ":nohlsearch<Bar>:echo<CR>", { silent = true })
+
+map("n", "<Leader>rn", ":Lspsaga rename<CR>", { noremap = true, silent = true })
+map("n", "<Leader>s", ":Lspsaga hover_doc<CR>", { noremap = true, silent = true })
+map("n", "<Leader>d", ":Lspsaga outline<CR>", { noremap = true, silent = true })
+
 -- CODEIUM
 vim.keymap.set("i", "<Leader><Tab>", function()
 	return vim.fn["codeium#Accept"]()
