@@ -115,6 +115,9 @@ require("lazy").setup({
 			"nvim-tree/nvim-web-devicons", -- optional
 		},
 	},
+	{
+		"folke/todo-comments.nvim",
+	},
 	-- SELEACT ALL WORD
 	-- {
 	-- 	"RRethy/vim-illuminate",
