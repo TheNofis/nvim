@@ -31,8 +31,3 @@ map("n", "<Esc>", ":nohlsearch<Bar>:echo<CR>", { silent = true })
 map("n", "<Leader>rn", ":Lspsaga rename<CR>", { noremap = true, silent = true })
 map("n", "<Leader>s", ":Lspsaga hover_doc<CR>", { noremap = true, silent = true })
 map("n", "<Leader>d", ":Lspsaga outline<CR>", { noremap = true, silent = true })
-
--- CODEIUM
-vim.keymap.set("i", "<Leader><Tab>", function()
-	return vim.fn["codeium#Accept"]()
-end, { expr = true, silent = true })
