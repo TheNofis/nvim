@@ -145,7 +145,7 @@ require("lazy").setup({
 	},
 
 	-- COLORIZE {} () <>
-	{ "norcalli/nvim-colorizer.lua" },
+	{ "brenoprata10/nvim-highlight-colors" },
 	{ "HiPhish/rainbow-delimiters.nvim" },
 
 	-- Renamer + Outline
