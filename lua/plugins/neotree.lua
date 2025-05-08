@@ -49,5 +49,5 @@ require("neo-tree").setup({
 		content_layout = "center",
 	},
 	enable_git_status = true,
-	close_if_last_window = true,
+	close_if_last_window = false,
 })
