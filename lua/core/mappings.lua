@@ -4,7 +4,7 @@ local map = vim.api.nvim_set_keymap
 
 -- NeoTree
 map("n", "<Leader>e", ":Neotree toggle<CR>", { noremap = true, silent = true })
-map("n", "<Leader>r", ":Neotree source=git_status<CR>", { noremap = true, silent = true })
+map("n", "<Leader>g", ":Neotree source=git_status<CR>", { noremap = true, silent = true })
 
 -- Save / Exit
 map("n", "<c-s>", ":w<CR>", { noremap = true, silent = true })
@@ -28,6 +28,7 @@ map("n", "<Leader>gc", ":Telescope git_commits<CR>", { noremap = true, silent = 
 
 map("n", "<Esc>", ":nohlsearch<Bar>:echo<CR>", { silent = true })
 
-map("n", "<Leader>rn", ":Lspsaga rename<CR>", { noremap = true, silent = true })
 map("n", "<Leader>s", ":Lspsaga hover_doc<CR>", { noremap = true, silent = true })
 map("n", "<Leader>d", ":Lspsaga outline<CR>", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap("n", "<leader>r", "<cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = true })
