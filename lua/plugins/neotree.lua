@@ -109,6 +109,30 @@ require("neo-tree").setup({
 		use_libuv_file_watcher = false, -- This will use the OS level file watchers to detect changes
 	},
 	git_status = {
+		window = {
+			position = "right",
+			width = 30,
+			mappings = {
+				["A"] = "git_add_all",
+				["u"] = "git_unstage_file",
+				["a"] = "git_add_file",
+				["r"] = "git_revert_file",
+				["c"] = "git_commit",
+				["p"] = "git_push",
+				["g"] = "git_commit_and_push",
+				["o"] = {
+					"show_help",
+					nowait = false,
+					config = { title = "Order by", prefix_key = "o" },
+				},
+				["oc"] = { "order_by_created", nowait = false },
+				["od"] = { "order_by_diagnostics", nowait = false },
+				["om"] = { "order_by_modified", nowait = false },
+				["on"] = { "order_by_name", nowait = false },
+				["os"] = { "order_by_size", nowait = false },
+				["ot"] = { "order_by_type", nowait = false },
+			},
+		},
 		symbols = {
 			-- Change type
 			added = " ", -- or "✚", but this is redundant info if you use git_status_colors on the name
