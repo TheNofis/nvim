@@ -147,33 +147,6 @@ require("lazy").setup({
 	-- COLORIZE {} () <>
 	{ "brenoprata10/nvim-highlight-colors" },
 	{ "HiPhish/rainbow-delimiters.nvim" },
-
-	-- Renamer + Outline
-	{
-		"nvimdev/lspsaga.nvim",
-		config = function()
-			require("lspsaga").setup({
-				lightbulb = {
-					enable = false,
-				},
-				symbol_in_winbar = {
-					enable = false,
-				},
-				rename = {
-					auto_save = true,
-					in_select = false,
-				},
-				outline = {
-					layout = "float",
-					details = false,
-				},
-			})
-		end,
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter", -- optional
-			"nvim-tree/nvim-web-devicons", -- optional
-		},
-	},
 	{
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
