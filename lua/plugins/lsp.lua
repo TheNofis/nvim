@@ -5,13 +5,13 @@ local lspconfig = require("lspconfig")
 
 lspconfig.pyright.setup({})
 lspconfig.css_variables.setup({
-	filetypes = { "javascript", "javascriptreact", "python", "typescript", "typescriptreact" },
+	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 })
 lspconfig.cssls.setup({
-	filetypes = { "javascript", "javascriptreact", "python", "typescript", "typescriptreact" },
+	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 })
 lspconfig.html.setup({
-	filetypes = { "javascript", "javascriptreact", "python", "typescript", "typescriptreact" },
+	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 })
 lspconfig.ts_ls.setup({})
 lspconfig.prismals.setup({})
