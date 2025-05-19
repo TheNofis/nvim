@@ -1,9 +1,10 @@
 local cmp = require("cmp")
 
+require("luasnip.loaders.from_vscode").lazy_load()
 cmp.setup({
 	snippet = {
 		expand = function(args)
-			vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+			require("luasnip").lsp_expand(args.body)
 		end,
 	},
 	sorting = {
@@ -59,31 +60,22 @@ cmp.setup({
 			end
 		end, { "i", "s" }),
 	}),
+
 	sources = cmp.config.sources({
+		{ name = "luasnip" },
 		{ name = "nvim_lsp" },
-		{ name = "vsnip" }, -- For vsnip users.
-	}, { { name = "buffer" }, { name = "nvim_lsp_signature_help" } }),
+	}, { { name = "buffer" }, { name = "nvim_lsp_signature_help" } }, { { name = "codeium" } }),
 })
 
--- Set configuration for specific filetype.
-cmp.setup.filetype("gitcommit", {
-	sources = cmp.config.sources({
-		{ name = "cmp_git" }, -- You can specify the `cmp_git` source if you were installed it.
-	}, { { name = "buffer" } }),
-})
-
--- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline({ "/", "?" }, {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = { { name = "buffer" } },
 })
 
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
 })
 
--- Set up lspconfig.
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 require("lspconfig")["ts_ls"].setup({ capabilities = capabilities })

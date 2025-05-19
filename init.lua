@@ -10,24 +10,23 @@ require("core.colorscheme")
 require("plugins.neotree")
 require("plugins.telescope")
 require("plugins.toggleterm")
-require("plugins.outline")
 require("plugins.lualine")
 require("plugins.buffline")
 require("plugins.highlight-colors")
+require("plugins.ibl")
 
 -- FORMATTER
-require("plugins.nullls")
-require("plugins.autopairs")
+require("plugins.conform")
 require("plugins.nvim-ts-autotag")
 
 --FITCH
 require("plugins.cmp")
 require("plugins.mason")
 require("plugins.comments")
+require("plugins.codeium")
 
 --LINTER
 require("plugins.lsp")
-require("plugins.ibl")
 require("plugins.treesitter")
 
-require("plugins.cmdline")
+require("plugins.noice")

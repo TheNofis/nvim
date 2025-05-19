@@ -1,4 +1,8 @@
-require("mason").setup({
+local mason = require("mason")
+local lspconfig = require("lspconfig")
+local registry = require("mason-registry")
+
+mason.setup({
 	ui = {
 		icons = {
 			package_installed = "✓",
@@ -8,25 +12,52 @@ require("mason").setup({
 	},
 })
 
--- LSP
-require("mason-lspconfig").setup({
-	ensure_installed = {
-		"denols",
-		"lua_ls",
-		"ts_ls",
-		"cssls",
-		"clangd",
-		"prismals",
-	},
-})
+-- Используем имена пакетов Mason для установки
+local mason_lsp_packages = {
+	"html-lsp",
+	"deno",
+	"lua-language-server",
+	"typescript-language-server",
+	"css-variables-language-server",
+	"rust-analyzer",
+	"prisma-language-server",
+	"clangd",
+}
 
--- FORMATTER
-require("mason-null-ls").setup({
-	ensure_installed = {
-		"css-variables-language-server",
-		-- "eslint_d",
-		"stylua",
-		"prettierd",
-		"fustfmt",
-	},
-})
+-- Соответствующие имена для lspconfig
+local lsp_servers = {
+	"html",
+	"denols",
+	"lua_ls",
+	"ts_ls",
+	"css_variables",
+	"rust_analyzer",
+	"prismals",
+	"clangd",
+}
+
+local formatter = {
+	"stylua",
+	"prettierd",
+}
+
+-- Установка LSP и форматтеров через Mason
+for _, name in ipairs(vim.list_extend(vim.deepcopy(mason_lsp_packages), formatter)) do
+	local ok, pkg = pcall(registry.get_package, name)
+	if ok and not pkg:is_installed() then
+		pkg:install()
+	end
+end
+
+-- Настройка LSP через lspconfig
+for _, name in ipairs(lsp_servers) do
+	local ok, config = pcall(function()
+		return require("lspconfig")[name]
+	end)
+
+	if ok and config then
+		config.setup({})
+	else
+		vim.notify("LSP config not found for " .. name, vim.log.levels.WARN)
+	end
+end

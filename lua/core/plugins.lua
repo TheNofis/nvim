@@ -1,89 +1,116 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
+if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
 		"clone",
 		"--filter=blob:none",
 		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
+		"--branch=stable",
 		lazypath,
 	})
 end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	{ "phaazon/hop.nvim" },
+	-- Основные плагины с lazy loading
+
+	{
+		"phaazon/hop.nvim",
+		event = "BufReadPost",
+		config = true,
+	},
+
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
+		cmd = "Neotree",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons",
 			"MunifTanjim/nui.nvim",
 		},
 	},
+
 	{
 		"nvim-treesitter/nvim-treesitter",
+		event = { "BufReadPost", "BufNewFile" },
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 			"windwp/nvim-ts-autotag",
 		},
+		build = ":TSUpdate",
 	},
-	{ "neovim/nvim-lspconfig" },
-	{ "navarasu/onedark.nvim" },
-	{ "hrsh7th/cmp-nvim-lsp" },
-	{ "hrsh7th/cmp-buffer" },
-	{ "hrsh7th/cmp-path" },
-	{ "hrsh7th/cmp-cmdline" },
+
+	{ "neovim/nvim-lspconfig", event = "BufReadPre" },
+	{ "mason-org/mason.nvim", cmd = "Mason" },
+	{ "mason-org/mason-lspconfig.nvim", cmd = "Mason" },
+	{ "mason-org/mason-registry", cmd = "Mason" },
+
+	{
+		"ray-x/lsp_signature.nvim",
+		event = "InsertEnter",
+		opts = {
+			bind = true,
+			handler_opts = { border = "rounded" },
+		},
+	},
+
+	{ "navarasu/onedark.nvim", lazy = false },
+
+	-- cmp и сниппеты
 	{
 		"hrsh7th/nvim-cmp",
+		event = "InsertEnter",
 		dependencies = {
-			"tailwind-tools",
-			"onsails/lspkind-nvim",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
+			"saadparwaiz1/cmp_luasnip",
 		},
-		opts = function()
-			return {
-				formatting = {
-					format = require("lspkind").cmp_format({
-						before = require("tailwind-tools.cmp").lspkind_format,
-					}),
-				},
-			}
-		end,
 	},
-	{ "hrsh7th/vim-vsnip" },
-	{ "hrsh7th/vim-vsnip-integ" },
-	{ "williamboman/mason.nvim" },
-	{ "williamboman/mason-lspconfig.nvim" },
-	{ "nvim-telescope/telescope.nvim" },
-	{ "akinsho/toggleterm.nvim", version = "*", config = true },
-	{ "jose-elias-alvarez/null-ls.nvim" },
-	{ "windwp/nvim-autopairs" },
-	{ "Djancyp/outline" },
-	{ "numToStr/Comment.nvim" },
-	{ "windwp/nvim-ts-autotag" },
+
+	{
+		"L3MON4D3/LuaSnip",
+		event = "InsertEnter",
+		dependencies = { "rafamadriz/friendly-snippets" },
+	},
+
+	{ "nvim-telescope/telescope.nvim", cmd = "Telescope", dependencies = { "nvim-lua/plenary.nvim" } },
+
+	{ "akinsho/toggleterm.nvim", version = "*", cmd = { "ToggleTerm", "TermExec" }, config = true },
+
+	{ "stevearc/conform.nvim", cmd = { "ConformInfo", "ConformSync" } },
+
+	{
+		"echasnovski/mini.pairs",
+		event = "InsertEnter",
+		opts = {},
+	},
+
+	{ "numToStr/Comment.nvim", keys = { "<Leader>/", "<Leader>/" } },
+
 	{
 		"nvim-lualine/lualine.nvim",
+		event = "VeryLazy",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 			"linrongbin16/lsp-progress.nvim",
 		},
 	},
-	{ "akinsho/bufferline.nvim", dependencies = { "nvim-tree/nvim-web-devicons" } },
+
 	{
-		"lukas-reineke/indent-blankline.nvim",
-	},
-	{
-		"jay-babu/mason-null-ls.nvim",
-		event = { "BufReadPre", "BufNewFile" },
+		"willothy/nvim-cokeline",
+		event = "BufWinEnter",
 		dependencies = {
-			"williamboman/mason.nvim",
-			"nvimtools/none-ls.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons",
 		},
-		config = function()
-			require("plugins.nullls")
-		end,
+		config = true,
 	},
+
+	{ "lukas-reineke/indent-blankline.nvim", event = "BufReadPost" },
+
 	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
@@ -91,76 +118,40 @@ require("lazy").setup({
 			"MunifTanjim/nui.nvim",
 			"rcarriga/nvim-notify",
 		},
-		config = function()
-			require("noice").setup({
-				routes = {
-					{
-						filter = {
-							event = "msg_show",
-							kind = "",
-							find = "written", -- Уведомления о сохранении файла
-						},
-						opts = { skip = true },
-					},
-					{
-						filter = {
-							event = "notify",
-							find = "Error", -- Сообщения об ошибках
-						},
-						opts = { skip = true },
-					},
-					{
-						filter = {
-							event = "msg_show",
-							find = "E21: Cannot make changes", -- Сообщения об ошибках
-						},
-						opts = { skip = true },
-					},
-				},
-			})
-		end,
 	},
-	{ "folke/which-key.nvim" },
 
-	-- AI AUTO COMPLITE
+	{ "folke/which-key.nvim", event = "VeryLazy" },
+
+	-- AI автодополнение
 	{
 		"Exafunction/codeium.nvim",
-		requires = {
+		name = "codeium",
+		event = "InsertEnter",
+		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"hrsh7th/nvim-cmp",
 		},
-		config = function()
-			require("codeium").setup({
-				enable_cmp_source = false,
-				virtual_text = {
-					enabled = true,
-					manual = false,
-					idle_delay = 0,
-					key_bindings = {
-						accept = "<Space><Tab>",
-					},
-				},
-			})
-		end,
 	},
 
-	-- COLORIZE {} () <>
-	{ "brenoprata10/nvim-highlight-colors" },
-	{ "HiPhish/rainbow-delimiters.nvim" },
+	-- Цветовое выделение
+	{ "brenoprata10/nvim-highlight-colors", event = "BufReadPost" },
+	{ "HiPhish/rainbow-delimiters.nvim", event = "BufReadPost" },
+
 	{
 		"folke/todo-comments.nvim",
+		event = "BufReadPost",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = {},
 	},
+
 	{
 		"luckasRanarison/tailwind-tools.nvim",
+		event = "BufReadPost",
 		name = "tailwind-tools",
 		build = ":UpdateRemotePlugins",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
-			"nvim-telescope/telescope.nvim", -- optional
-			"neovim/nvim-lspconfig", -- optional
+			"nvim-telescope/telescope.nvim",
 		},
-		opts = {}, -- your configuration
 	},
 })
