@@ -15,7 +15,6 @@ mason.setup({
 -- Используем имена пакетов Mason для установки
 local mason_lsp_packages = {
 	"html-lsp",
-	"deno",
 	"lua-language-server",
 	"typescript-language-server",
 	"css-variables-language-server",
@@ -27,7 +26,6 @@ local mason_lsp_packages = {
 -- Соответствующие имена для lspconfig
 local lsp_servers = {
 	"html",
-	"denols",
 	"lua_ls",
 	"ts_ls",
 	"css_variables",
@@ -52,7 +50,7 @@ end
 -- Настройка LSP через lspconfig
 for _, name in ipairs(lsp_servers) do
 	local ok, config = pcall(function()
-		return require("lspconfig")[name]
+		return lspconfig[name]
 	end)
 
 	if ok and config then
