@@ -13,7 +13,18 @@ lspconfig.cssls.setup({
 lspconfig.html.setup({
 	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 })
-lspconfig.ts_ls.setup({})
+lspconfig.ts_ls.setup({
+	capabilities = capabilities,
+	root_dir = lspconfig.util.find_git_ancestor,
+	init_options = {
+		preferences = {
+			importModuleSpecifierPreference = "non-relative",
+		},
+	},
+	on_attach = function(client)
+		client.server_capabilities.documentFormattingProvider = false
+	end,
+})
 lspconfig.prismals.setup({})
 lspconfig.cssls.setup({
 	capabilities = capabilities,
@@ -32,7 +43,7 @@ lspconfig.rust_analyzer.setup({
 })
 
 lspconfig.clangd.setup({
-	on_attach = function(client, bufnr)
+	on_attach = function(client)
 		client.server_capabilities.signatureHelpProvider = false
 	end,
 	capabilities = capabilities,
