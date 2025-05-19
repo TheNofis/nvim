@@ -5,7 +5,6 @@ local get_hex = require("cokeline.hlgroups").get_hl_attr
 local red = vim.g.terminal_color_1
 local yellow = vim.g.terminal_color_3
 local green = vim.g.terminal_color_2
-local blue = vim.g.terminal_color_4
 local purple = vim.g.terminal_color_5
 
 local normalBg = get_hex("Normal", "bg")
@@ -27,9 +26,7 @@ require("cokeline").setup({
 		filetype = { "NvimTree", "neo-tree" },
 		components = {
 			{
-				text = function(buf)
-					return "          Nvim Tree"
-				end,
+				text = "          Nvim Tree",
 				bg = function()
 					return get_hex("NvimTreeNormal", "bg")
 				end,
