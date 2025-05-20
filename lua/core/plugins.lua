@@ -85,7 +85,37 @@ require("lazy").setup({
 	{
 		"echasnovski/mini.pairs",
 		event = "InsertEnter",
-		opts = {},
+	},
+
+	{
+		"echasnovski/mini.indentscope",
+		event = "BufReadPre",
+		config = function()
+			require("mini.indentscope").setup({ symbol = "│", draw = { delay = 0 } })
+		end,
+	},
+
+	{
+		"echasnovski/mini.move",
+		event = "BufReadPre",
+		config = function()
+			require("mini.move").setup({
+				mappings = { left = "<A-left>", right = "<A-right>", down = "<A-down>", up = "<A-up>" },
+			})
+		end,
+	},
+
+	{
+		"echasnovski/mini.surround",
+		event = "BufReadPre",
+		config = function()
+			require("mini.surround").setup({
+				mappings = {
+					add = "A",
+					delete = "D",
+				},
+			})
+		end,
 	},
 
 	{ "numToStr/Comment.nvim", keys = { "<Leader>/", "<Leader>/" } },
@@ -108,8 +138,6 @@ require("lazy").setup({
 		},
 		config = true,
 	},
-
-	{ "lukas-reineke/indent-blankline.nvim", event = "BufReadPost" },
 
 	{
 		"folke/noice.nvim",
