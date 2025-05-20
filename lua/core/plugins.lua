@@ -111,7 +111,7 @@ require("lazy").setup({
 		config = function()
 			require("mini.surround").setup({
 				mappings = {
-					add = "A",
+					add = "S",
 					delete = "D",
 				},
 			})
