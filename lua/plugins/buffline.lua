@@ -1,5 +1,3 @@
-local is_picking_focus = require("cokeline.mappings").is_picking_focus
-local is_picking_close = require("cokeline.mappings").is_picking_close
 local get_hex = require("cokeline.hlgroups").get_hl_attr
 
 local red = vim.g.terminal_color_1
@@ -62,16 +60,10 @@ require("cokeline").setup({
 		},
 		{
 			text = function(buffer)
-				return (is_picking_focus() or is_picking_close()) and buffer.pick_letter .. " " or buffer.devicon.icon
+				return buffer.devicon.icon
 			end,
 			fg = function(buffer)
-				return (is_picking_focus() and yellow) or (is_picking_close() and red) or buffer.devicon.color
-			end,
-			italic = function()
-				return (is_picking_focus() or is_picking_close())
-			end,
-			bold = function()
-				return (is_picking_focus() or is_picking_close())
+				return buffer.devicon.color
 			end,
 		},
 		{
