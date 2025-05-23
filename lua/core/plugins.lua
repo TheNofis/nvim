@@ -172,7 +172,9 @@ require("lazy").setup({
 		"folke/todo-comments.nvim",
 		event = "BufReadPost",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = {},
+		config = function()
+			require("todo-comments").setup({})
+		end,
 	},
 
 	{
