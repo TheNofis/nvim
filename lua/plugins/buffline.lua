@@ -68,6 +68,9 @@ require("cokeline").setup({
 		},
 		{
 			text = " ",
+			on_click = function()
+				return false
+			end,
 		},
 		{
 			text = function(buffer)
