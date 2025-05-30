@@ -41,25 +41,6 @@ lspconfig.prismals.setup({})
 lspconfig.cssls.setup({
 	capabilities = capabilities,
 })
-lspconfig.rust_analyzer.setup({
-	settings = {
-		["rust-analyzer"] = {
-			diagnostics = {
-				enable = true,
-				experimental = {
-					enable = true,
-				},
-			},
-		},
-	},
-})
-
-lspconfig.clangd.setup({
-	on_attach = function(client)
-		client.server_capabilities.signatureHelpProvider = false
-	end,
-	capabilities = capabilities,
-})
 
 vim.keymap.set("n", "<leader>lD", vim.diagnostic.open_float)
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)

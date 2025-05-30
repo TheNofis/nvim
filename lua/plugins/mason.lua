@@ -19,9 +19,7 @@ local mason_lsp_packages = {
 	"typescript-language-server",
 	"css-variables-language-server",
 	"emmet-language-server",
-	"rust-analyzer",
 	"prisma-language-server",
-	"clangd",
 }
 
 -- Соответствующие имена для lspconfig
@@ -29,9 +27,7 @@ local lsp_servers = {
 	"html",
 	"lua_ls",
 	"ts_ls",
-	"rust_analyzer",
 	"prismals",
-	"clangd",
 }
 
 local formatter = {
