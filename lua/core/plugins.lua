@@ -83,10 +83,10 @@ require("lazy").setup({
 	{ "stevearc/conform.nvim", cmd = { "ConformInfo", "ConformSync" } },
 
 	{
-		"echasnovski/mini.pairs",
+		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 		config = function()
-			require("mini.pairs").setup()
+			require("nvim-autopairs").setup()
 		end,
 	},
 
