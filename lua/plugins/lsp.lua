@@ -4,9 +4,6 @@ capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 -- Setup language servers.
 local lspconfig = require("lspconfig")
 
-lspconfig.css_variables.setup({
-	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-})
 lspconfig.cssls.setup({
 	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 })
