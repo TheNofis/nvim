@@ -1,4 +1,5 @@
 local cmp = require("cmp")
+local types = require("cmp.types")
 
 require("luasnip.loaders.from_vscode").lazy_load()
 cmp.setup({
@@ -62,9 +63,18 @@ cmp.setup({
 	}),
 
 	sources = cmp.config.sources({
-		{ name = "luasnip" },
-		{ name = "nvim_lsp" },
-	}, { { name = "buffer" }, { name = "nvim_lsp_signature_help" } }, { { name = "codeium" } }),
+		{ name = "luasnip", option = { keyword_pattern = [[[\w<>]*]] } },
+		{
+			name = "nvim_lsp",
+			entry_filter = function(entry)
+				local kind = entry:get_kind()
+				if kind == types.lsp.CompletionItemKind.Property then
+					return false
+				end
+				return true
+			end,
+		},
+	}, { { name = "buffer" }, { name = "codeium" } }),
 })
 
 cmp.setup.cmdline({ "/", "?" }, {

@@ -12,8 +12,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	-- Основные плагины с lazy loading
-
 	{
 		"phaazon/hop.nvim",
 		event = "BufReadPost",
@@ -73,7 +71,17 @@ require("lazy").setup({
 	{
 		"L3MON4D3/LuaSnip",
 		event = "InsertEnter",
-		dependencies = { "rafamadriz/friendly-snippets" },
+		dependencies = {
+			"rafamadriz/friendly-snippets",
+			{
+				"xabikos/vscode-react",
+				config = function()
+					require("luasnip.loaders.from_vscode").load({
+						paths = { vim.fn.stdpath("data") .. "/lazy/vscode-react/snippets" },
+					})
+				end,
+			},
+		},
 	},
 
 	{ "nvim-telescope/telescope.nvim", cmd = "Telescope", dependencies = { "nvim-lua/plenary.nvim" } },
