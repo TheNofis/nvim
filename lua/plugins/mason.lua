@@ -18,6 +18,7 @@ local mason_lsp_packages = {
 	"lua-language-server",
 	"typescript-language-server",
 	"css-variables-language-server",
+	"emmet-language-server",
 	"rust-analyzer",
 	"prisma-language-server",
 	"clangd",

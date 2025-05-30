@@ -13,6 +13,20 @@ lspconfig.cssls.setup({
 lspconfig.html.setup({
 	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 })
+lspconfig.emmet_language_server.setup({
+	filetypes = {
+		"css",
+		"eruby",
+		"html",
+		"javascript",
+		"javascriptreact",
+		"less",
+		"sass",
+		"scss",
+		"pug",
+		"typescriptreact",
+	},
+})
 lspconfig.ts_ls.setup({
 	capabilities = capabilities,
 	root_dir = lspconfig.util.find_git_ancestor,
