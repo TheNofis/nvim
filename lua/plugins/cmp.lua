@@ -8,34 +8,6 @@ cmp.setup({
 			require("luasnip").lsp_expand(args.body)
 		end,
 	},
-	sorting = {
-		priority_weight = 2,
-		comparators = {
-			-- Сначала показываем path-результаты
-			function(entry1, entry2)
-				local name1 = entry1.source.name
-				local name2 = entry2.source.name
-				if name1 == name2 then
-					return nil
-				end
-				if name1 == "path" then
-					return true
-				end
-				if name2 == "path" then
-					return false
-				end
-			end,
-			-- остальные компараторы cmp
-			cmp.config.compare.offset,
-			cmp.config.compare.exact,
-			cmp.config.compare.score,
-			cmp.config.compare.recently_used,
-			cmp.config.compare.kind,
-			cmp.config.compare.sort_text,
-			cmp.config.compare.length,
-			cmp.config.compare.order,
-		},
-	},
 	window = {
 		completion = cmp.config.window.bordered(),
 		documentation = cmp.config.window.bordered(),
