@@ -29,7 +29,6 @@ local lsp_servers = {
 	"html",
 	"lua_ls",
 	"ts_ls",
-	"css_variables",
 	"rust_analyzer",
 	"prismals",
 	"clangd",
