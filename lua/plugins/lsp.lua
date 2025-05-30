@@ -5,23 +5,24 @@ capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 local lspconfig = require("lspconfig")
 
 lspconfig.cssls.setup({
-	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+	filetypes = { "css", "html", "javascript", "javascriptreact", "typescript", "typescriptreact" },
 })
 lspconfig.html.setup({
-	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+	filetypes = { "html", "javascript", "javascriptreact", "typescript", "typescriptreact" },
 })
 lspconfig.emmet_language_server.setup({
 	filetypes = {
 		"css",
-		"eruby",
 		"html",
 		"javascript",
 		"javascriptreact",
 		"less",
 		"sass",
 		"scss",
-		"pug",
 		"typescriptreact",
+	},
+	init_options = {
+		showSuggestionsAsSnippets = true,
 	},
 })
 lspconfig.ts_ls.setup({
