@@ -31,6 +31,8 @@ map("n", "<Leader>c", ":Telescope git_commits<CR>", { noremap = true, silent = t
 map("n", "<Esc>", ":nohlsearch<Bar>:echo<CR>", { silent = true })
 
 map("n", "<leader>r", "<cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = true })
+map("n", "<leader>rf", "<cmd>TSToolsRenameFile sync<CR>", { noremap = true, silent = true })
+
 map("n", "<leader>s", "<cmd>lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "<c-x>", '"_dd')

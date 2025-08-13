@@ -181,18 +181,27 @@ require("lazy").setup({
 		event = "BufReadPost",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
-			require("todo-comments").setup({})
+			require("todo-comments").setup()
 		end,
 	},
 
 	{
-		"luckasRanarison/tailwind-tools.nvim",
-		event = "BufReadPost",
-		name = "tailwind-tools",
-		build = ":UpdateRemotePlugins",
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			"nvim-telescope/telescope.nvim",
-		},
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		config = function()
+			require("typescript-tools").setup({
+				settings = {
+					tsserver_file_preferences = {
+						includeInlayParameterNameHints = "all",
+						includeCompletionsForModuleExports = true,
+						quotePreference = "auto",
+					},
+					tsserver_format_options = {
+						allowIncompleteCompletions = true,
+						allowRenameOfImportPath = true,
+					},
+				},
+			})
+		end,
 	},
 })
