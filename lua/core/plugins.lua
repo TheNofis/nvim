@@ -198,4 +198,12 @@ require("lazy").setup({
 			})
 		end,
 	},
+
+	{
+		"gbprod/yanky.nvim",
+		event = "BufReadPost",
+		config = function()
+			require("yanky").setup()
+		end,
+	},
 })
