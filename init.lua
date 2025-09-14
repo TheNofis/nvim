@@ -13,6 +13,7 @@ require("plugins.toggleterm")
 require("plugins.lualine")
 require("plugins.buffline")
 require("plugins.highlight-colors")
+require("plugins.notify")
 
 -- FORMATTER
 require("plugins.conform")
