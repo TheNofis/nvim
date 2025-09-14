@@ -38,6 +38,8 @@ vim.opt.smartindent = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = false
 
+vim.opt.laststatus = 0
+
 -- Navigation
 vim.keymap.set("n", "<c-k>", ":wincmd k<CR>")
 vim.keymap.set("n", "<c-j>", ":wincmd j<CR>")

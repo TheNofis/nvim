@@ -132,15 +132,6 @@ require("lazy").setup({
 	{ "numToStr/Comment.nvim", keys = { "<Leader>/", "<Leader>/" } },
 
 	{
-		"nvim-lualine/lualine.nvim",
-		event = "VeryLazy",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-			"linrongbin16/lsp-progress.nvim",
-		},
-	},
-
-	{
 		"willothy/nvim-cokeline",
 		event = "BufWinEnter",
 		dependencies = {
