@@ -21,8 +21,10 @@ map("n", "<c-up>", ":resize -5<CR>", { noremap = true, silent = true })
 map("n", "<c-down>", ":resize +5<CR>", { noremap = true, silent = true })
 
 -- BUFFER SWITCH
-map("n", "<c-h>", ":wincmd h<CR>", { noremap = true, silent = true })
-map("n", "<c-l>", ":wincmd l<CR>", { noremap = true, silent = true })
+map("n", "<c-h>", "<c-w>h")
+map("n", "<c-l>", "<c-w>l")
+map("n", "<c-j>", "<c-w>j")
+map("n", "<c-k>", "<c-w>k")
 
 -- GIT
 map("n", "<Leader>ss", ":Telescope git_status<CR>", { noremap = true, silent = true })
