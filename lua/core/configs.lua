@@ -19,7 +19,7 @@ vim.opt.mousefocus = true
 
 -- Line Numbers
 vim.opt.number = true
-vim.opt.relativenumber = true
+vim.opt.relatsivenumber = true
 
 -- Splits
 vim.opt.splitbelow = true
@@ -36,7 +36,7 @@ vim.opt.softtabstop = 2
 vim.opt.smartindent = true
 
 vim.opt.ignorecase = true
-vim.opt.smartcase = false
+vim.opt.smartcase = true
 
 vim.opt.laststatus = 0
 
