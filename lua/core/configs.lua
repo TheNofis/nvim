@@ -15,11 +15,10 @@ vim.opt.shell = "/bin/zsh"
 
 -- Mouse
 vim.opt.mouse = "a"
-vim.opt.mousefocus = true
 
 -- Line Numbers
 vim.opt.number = true
-vim.opt.relatsivenumber = true
+vim.opt.relativenumber = true
 
 -- Splits
 vim.opt.splitbelow = true
@@ -36,16 +35,5 @@ vim.opt.softtabstop = 2
 vim.opt.smartindent = true
 
 vim.opt.ignorecase = true
-vim.opt.smartcase = true
-
+vim.opt.smartcase = false
 vim.opt.laststatus = 0
-
--- Navigation
-vim.keymap.set("n", "<c-k>", ":wincmd k<CR>")
-vim.keymap.set("n", "<c-j>", ":wincmd j<CR>")
-vim.keymap.set("n", "<c-h>", ":wincmd h<CR>")
-vim.keymap.set("n", "<c-l>", ":wincmd l<CR>")
-
--- Tabulation
-vim.api.nvim_set_keymap("v", "<Tab>", ">gv", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "<S-Tab>", "<gv", { noremap = true, silent = true })
