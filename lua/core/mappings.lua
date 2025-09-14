@@ -22,6 +22,8 @@ map("n", "<c-up>", ":resize -5<CR>", { noremap = true, silent = true })
 map("n", "<c-down>", ":resize +5<CR>", { noremap = true, silent = true })
 
 --[[ Перемещение между окнами ]]
+map("n", "<c-k>", ":wincmd k<CR>", { noremap = true, silent = true })
+map("n", "<c-j>", ":wincmd j<CR>", { noremap = true, silent = true })
 map("n", "<c-h>", ":wincmd h<CR>", { noremap = true, silent = true })
 map("n", "<c-l>", ":wincmd l<CR>", { noremap = true, silent = true })
 
