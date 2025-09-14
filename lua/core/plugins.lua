@@ -157,6 +157,9 @@ require("lazy").setup({
 			"MunifTanjim/nui.nvim",
 			"rcarriga/nvim-notify",
 		},
+		config = function()
+			require("noice").setup({})
+		end,
 	},
 
 	{ "folke/which-key.nvim", event = "VeryLazy" },
