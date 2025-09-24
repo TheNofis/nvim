@@ -39,6 +39,10 @@ map("n", "<leader>r", "<cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true, sil
 map("n", "<leader>rf", "<cmd>TSToolsRenameFile sync<CR>", { noremap = true, silent = true })
 map("n", "<leader>s", "<cmd>lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true })
 
+--[[ Форматирование ]]
+map("v", "<Tab>", ">gv", { noremap = true, silent = true })
+map("v", "<S-Tab>", "<gv", { noremap = true, silent = true })
+
 --[[ Удаление без сохранения в регистр ]]
 vim.keymap.set("n", "<c-x>", '"_dd')
 vim.keymap.set("v", "<c-x>", '"_dd')
