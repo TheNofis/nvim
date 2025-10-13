@@ -54,6 +54,13 @@ require("lazy").setup({
 	},
 
 	{ "navarasu/onedark.nvim", lazy = false },
+	{
+		"AlexvZyl/nordic.nvim",
+		lazy = false,
+		config = function()
+			require("nordic").load()
+		end,
+	},
 
 	-- cmp и сниппеты
 	{
