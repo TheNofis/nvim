@@ -222,4 +222,11 @@ require("lazy").setup({
 			require("yanky").setup()
 		end,
 	},
+	{
+		"petertriho/nvim-scrollbar",
+		event = "BufReadPost",
+		config = function()
+			require("scrollbar").setup()
+		end,
+	},
 })
