@@ -13,12 +13,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	{
-		"phaazon/hop.nvim",
-		event = "BufReadPost",
-		config = true,
-	},
-
-	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
 		cmd = "Neotree",
@@ -222,6 +216,7 @@ require("lazy").setup({
 			require("yanky").setup()
 		end,
 	},
+
 	{
 		"petertriho/nvim-scrollbar",
 		event = "BufReadPost",
