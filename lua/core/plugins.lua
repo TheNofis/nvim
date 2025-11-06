@@ -164,9 +164,7 @@ require("lazy").setup({
 
 	-- AI автодополнение
 	{
-		"Exafunction/codeium.nvim",
-		name = "codeium",
-		event = "InsertEnter",
+		"Exafunction/windsurf.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"hrsh7th/nvim-cmp",
