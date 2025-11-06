@@ -38,6 +38,7 @@ map("n", "<Esc>", ":nohlsearch<Bar>:echo<CR>", { silent = true })
 map("n", "<leader>r", "<cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = true })
 map("n", "<leader>rf", "<cmd>TSToolsRenameFile sync<CR>", { noremap = true, silent = true })
 map("n", "<leader>s", "<cmd>lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true })
+map("n", "<leader>t", "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true })
 
 --[[ Форматирование ]]
 map("v", "<Tab>", ">gv", { noremap = true, silent = true })
