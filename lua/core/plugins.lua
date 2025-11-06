@@ -232,4 +232,8 @@ require("lazy").setup({
 			require("scrollbar").setup()
 		end,
 	},
+	{
+		"karb94/neoscroll.nvim",
+		event = "WinScrolled",
+	},
 })

@@ -13,6 +13,7 @@ require("plugins.toggleterm")
 require("plugins.buffline")
 require("plugins.highlight-colors")
 require("plugins.notify")
+require("plugins.neoscroll")
 
 -- FORMATTER
 require("plugins.conform")
