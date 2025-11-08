@@ -18,7 +18,7 @@ require("lazy").setup({
 		cmd = "Neotree",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"nvim-tree/nvim-web-devicons",
+			"DaikyXendo/nvim-material-icon",
 			"MunifTanjim/nui.nvim",
 		},
 	},
@@ -156,7 +156,7 @@ require("lazy").setup({
 		event = "BufWinEnter",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"nvim-tree/nvim-web-devicons",
+			"DaikyXendo/nvim-material-icon",
 		},
 		config = true,
 	},
@@ -236,10 +236,5 @@ require("lazy").setup({
 	{
 		"karb94/neoscroll.nvim",
 		event = "WinScrolled",
-	},
-	{
-		"DaikyXendo/nvim-material-icon",
-		lazy = false,
-		priority = 1000,
 	},
 })
