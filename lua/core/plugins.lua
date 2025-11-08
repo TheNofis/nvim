@@ -232,8 +232,14 @@ require("lazy").setup({
 			require("scrollbar").setup()
 		end,
 	},
+
 	{
 		"karb94/neoscroll.nvim",
 		event = "WinScrolled",
+	},
+	{
+		"DaikyXendo/nvim-material-icon",
+		lazy = false,
+		priority = 1000,
 	},
 })
