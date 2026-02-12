@@ -237,4 +237,13 @@ require("lazy").setup({
 		"karb94/neoscroll.nvim",
 		event = "WinScrolled",
 	},
+
+	{
+		"rbong/vim-flog",
+		lazy = true,
+		cmd = { "Flog", "Flogsplit", "Floggit" },
+		dependencies = {
+			"tpope/vim-fugitive",
+		},
+	},
 })
