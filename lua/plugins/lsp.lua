@@ -25,6 +25,14 @@ lspconfig.emmet_language_server.setup({
 		showSuggestionsAsSnippets = true,
 	},
 })
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = "*.dsc",
+	callback = function()
+		vim.bo.filetype = "yaml"
+	end,
+})
+
 lspconfig.ts_ls.setup({
 	capabilities = capabilities,
 	root_dir = lspconfig.util.find_git_ancestor,
@@ -33,12 +41,16 @@ lspconfig.ts_ls.setup({
 			importModuleSpecifierPreference = "non-relative",
 		},
 	},
-	on_attach = function(client)
+	on_attach = function(client, bufnr)
 		client.server_capabilities.documentFormattingProvider = false
 	end,
 })
 lspconfig.prismals.setup({})
 lspconfig.cssls.setup({
+	capabilities = capabilities,
+})
+
+lspconfig.clangd.setup({
 	capabilities = capabilities,
 })
 

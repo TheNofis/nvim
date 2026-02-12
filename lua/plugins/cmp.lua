@@ -35,6 +35,7 @@ cmp.setup({
 	}),
 
 	sources = cmp.config.sources({
+		{ name = "luasnip", option = { keyword_pattern = [[[\w<>]*]] } },
 		{
 			name = "nvim_lsp",
 			entry_filter = function(entry)
@@ -45,7 +46,6 @@ cmp.setup({
 				return true
 			end,
 		},
-		{ name = "luasnip", option = { keyword_pattern = [[[\w<>]*]] } },
 		{ name = "buffer" },
 		{ name = "codeium" },
 	}),
