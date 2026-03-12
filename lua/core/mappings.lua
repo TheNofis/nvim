@@ -44,6 +44,8 @@ map("n", "<leader>t", "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = tr
 map("v", "<Tab>", ">gv", { noremap = true, silent = true })
 map("v", "<S-Tab>", "<gv", { noremap = true, silent = true })
 
+map("n", "<leader>cc", "<cmd>CodexToggle<CR>", { noremap = true, silent = true })
+
 --[[ Удаление без сохранения в регистр ]]
 vim.keymap.set("n", "<c-x>", '"_dd')
 vim.keymap.set("v", "<c-x>", '"_dd')

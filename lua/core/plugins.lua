@@ -33,7 +33,6 @@ require("lazy").setup({
 		build = ":TSUpdate",
 	},
 
-	{ "neovim/nvim-lspconfig", event = "BufReadPre" },
 	{ "mason-org/mason.nvim", cmd = "Mason" },
 	{ "mason-org/mason-lspconfig.nvim", cmd = "Mason" },
 	{ "mason-org/mason-registry", cmd = "Mason" },
@@ -199,7 +198,7 @@ require("lazy").setup({
 
 	{
 		"pmizio/typescript-tools.nvim",
-		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			require("typescript-tools").setup({
 				settings = {
@@ -245,5 +244,21 @@ require("lazy").setup({
 		dependencies = {
 			"tpope/vim-fugitive",
 		},
+	},
+
+	{
+		"neanias/everforest-nvim",
+		version = false,
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("everforest").setup({})
+		end,
+	},
+
+	{
+		"kkrampis/codex.nvim",
+		lazy = true,
+		cmd = { "Codex", "CodexToggle" }, -- Optional: Load only on command execution
 	},
 })
