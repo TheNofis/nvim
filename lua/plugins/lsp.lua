@@ -1,16 +1,27 @@
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
--- Setup language servers.
-local lspconfig = require("lspconfig")
+-- Общие capabilities для всех LSP
+vim.lsp.config("*", {
+	capabilities = capabilities,
+})
 
-lspconfig.cssls.setup({
+-- Кастомный filetype для *.dsc
+vim.filetype.add({
+	extension = {
+		dsc = "yaml",
+	},
+})
+
+vim.lsp.config("cssls", {
 	filetypes = { "css", "html", "javascript", "javascriptreact", "typescript", "typescriptreact" },
 })
-lspconfig.html.setup({
+
+vim.lsp.config("html", {
 	filetypes = { "html", "javascript", "javascriptreact", "typescript", "typescriptreact" },
 })
-lspconfig.emmet_language_server.setup({
+
+vim.lsp.config("emmet_language_server", {
 	filetypes = {
 		"css",
 		"html",
@@ -26,48 +37,55 @@ lspconfig.emmet_language_server.setup({
 	},
 })
 
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = "*.dsc",
-	callback = function()
-		vim.bo.filetype = "yaml"
+vim.lsp.config("ts_ls", {
+	-- Эквивалент старого lspconfig.util.find_git_ancestor
+	root_dir = function(bufnr, on_dir)
+		local root = vim.fs.root(bufnr, { ".git" })
+		if root then
+			on_dir(root)
+		end
 	end,
-})
-
-lspconfig.ts_ls.setup({
-	capabilities = capabilities,
-	root_dir = lspconfig.util.find_git_ancestor,
 	init_options = {
 		preferences = {
 			importModuleSpecifierPreference = "non-relative",
 		},
 	},
-	on_attach = function(client, bufnr)
+	on_attach = function(client, _)
 		client.server_capabilities.documentFormattingProvider = false
 	end,
 })
-lspconfig.prismals.setup({})
-lspconfig.cssls.setup({
-	capabilities = capabilities,
+
+-- prismals и clangd можно просто включить без override'ов
+vim.lsp.enable({
+	"cssls",
+	"html",
+	"emmet_language_server",
+	"ts_ls",
+	"prismals",
+	"clangd",
 })
 
-lspconfig.clangd.setup({
-	capabilities = capabilities,
-})
+vim.keymap.set("n", "<leader>lD", vim.diagnostic.open_float, { desc = "Line diagnostics" })
+vim.keymap.set("n", "[d", function()
+	vim.diagnostic.jump({ count = -1 })
+end, { desc = "Previous diagnostic" })
+vim.keymap.set("n", "]d", function()
+	vim.diagnostic.jump({ count = 1 })
+end, { desc = "Next diagnostic" })
+vim.keymap.set("n", "<leader>ld", vim.diagnostic.setloclist, { desc = "Diagnostics to loclist" })
 
-vim.keymap.set("n", "<leader>lD", vim.diagnostic.open_float)
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
-vim.keymap.set("n", "<leader>ld", vim.diagnostic.setloclist)
+local lsp_group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true })
 
 vim.api.nvim_create_autocmd("LspAttach", {
-	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-	callback = function(ev)
-		vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+	group = lsp_group,
+	callback = function(args)
+		local map = function(lhs, rhs, desc)
+			vim.keymap.set("n", lhs, rhs, { buffer = args.buf, desc = desc })
+		end
 
-		local opts = { buffer = ev.buf }
-		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-		vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+		map("gD", vim.lsp.buf.declaration, "LSP declaration")
+		map("K", vim.lsp.buf.hover, "LSP hover")
+		map("gi", vim.lsp.buf.implementation, "LSP implementation")
+		map("<C-k>", vim.lsp.buf.signature_help, "LSP signature help")
 	end,
 })

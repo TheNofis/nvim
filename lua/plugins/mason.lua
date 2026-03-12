@@ -1,5 +1,4 @@
 local mason = require("mason")
-local lspconfig = require("lspconfig")
 local registry = require("mason-registry")
 
 mason.setup({
@@ -12,46 +11,47 @@ mason.setup({
 	},
 })
 
--- Используем имена пакетов Mason для установки
-local mason_lsp_packages = {
+-- Mason packages (имена mason)
+local mason_packages = {
 	"html-lsp",
 	"lua-language-server",
 	"typescript-language-server",
-	"css-variables-language-server",
 	"emmet-language-server",
 	"prisma-language-server",
-}
-
--- Соответствующие имена для lspconfig
-local lsp_servers = {
-	"html",
-	"lua_ls",
-	"ts_ls",
-	"prismals",
-}
-
-local formatter = {
 	"stylua",
 	"prettierd",
 }
 
--- Установка LSP и форматтеров через Mason
-for _, name in ipairs(vim.list_extend(vim.deepcopy(mason_lsp_packages), formatter)) do
+-- Установка через mason
+for _, name in ipairs(mason_packages) do
 	local ok, pkg = pcall(registry.get_package, name)
+
 	if ok and not pkg:is_installed() then
 		pkg:install()
 	end
 end
 
--- Настройка LSP через lspconfig
-for _, name in ipairs(lsp_servers) do
-	local ok, config = pcall(function()
-		return lspconfig[name]
-	end)
+-- LSP конфигурации
+vim.lsp.config("html", {})
 
-	if ok and config then
-		config.setup({})
-	else
-		vim.notify("LSP config not found for " .. name, vim.log.levels.WARN)
-	end
-end
+vim.lsp.config("lua_ls", {
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { "vim" },
+			},
+		},
+	},
+})
+
+vim.lsp.config("ts_ls", {})
+
+vim.lsp.config("prismals", {})
+
+-- Включение серверов
+vim.lsp.enable({
+	"html",
+	"lua_ls",
+	"ts_ls",
+	"prismals",
+})
