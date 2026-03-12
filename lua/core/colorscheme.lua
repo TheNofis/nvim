@@ -27,5 +27,5 @@ require("onedark").setup({
 		background = true, -- use background color for virtual text
 	},
 })
-vim.cmd.colorscheme("nordic")
+vim.cmd.colorscheme("everforest")
 vim.cmd("set noshowmode showcmd")
