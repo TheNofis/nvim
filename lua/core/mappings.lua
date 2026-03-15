@@ -4,7 +4,7 @@ local map = vim.api.nvim_set_keymap
 
 --[[ NeoTree ]]
 map("n", "<Leader>e", ":Neotree toggle<CR>", { noremap = true, silent = true })
-map("n", "<Leader>g", ":Neotree toggle source=git_status<CR>", { noremap = true, silent = true })
+map("n", "<Leader>ge", ":Neotree toggle source=git_status<CR>", { noremap = true, silent = true })
 
 --[[ Save / Exit ]]
 map("n", "<c-s>", ":w<CR>", { noremap = true, silent = true })
