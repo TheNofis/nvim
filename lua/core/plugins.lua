@@ -261,4 +261,13 @@ require("lazy").setup({
 		lazy = true,
 		cmd = { "Codex", "CodexToggle" }, -- Optional: Load only on command execution
 	},
+
+	{
+		"Wansmer/langmapper.nvim",
+		lazy = false,
+		priority = 1,
+		config = function()
+			require("langmapper").setup({})
+		end,
+	},
 })
