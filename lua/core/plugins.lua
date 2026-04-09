@@ -89,7 +89,10 @@ require("lazy").setup({
 		cmd = "Telescope",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope-fzf-native.nvim",
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+      },
 			"nvim-telescope/telescope-ui-select.nvim",
 		},
 	},
