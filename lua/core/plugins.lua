@@ -46,15 +46,6 @@ require("lazy").setup({
 		},
 	},
 
-	{ "navarasu/onedark.nvim", lazy = false },
-	{
-		"AlexvZyl/nordic.nvim",
-		lazy = false,
-		config = function()
-			require("nordic").load()
-		end,
-	},
-
 	-- cmp и сниппеты
 	{
 		"hrsh7th/nvim-cmp",
@@ -89,10 +80,10 @@ require("lazy").setup({
 		cmd = "Telescope",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
-      },
+			{
+				"nvim-telescope/telescope-fzf-native.nvim",
+				build = "make",
+			},
 			"nvim-telescope/telescope-ui-select.nvim",
 		},
 	},
