@@ -30,6 +30,33 @@ map("n", "<c-l>", ":wincmd l<CR>", { noremap = true, silent = true })
 --[[ GIT ]]
 map("n", "<Leader>gs", ":Telescope git_status<CR>", { noremap = true, silent = true })
 map("n", "<Leader>gc", ":Telescope git_commits<CR>", { noremap = true, silent = true })
+-- 🔁 навигация по изменениям
+map("n", "]h", gs.next_hunk, "Next Hunk")
+map("n", "[h", gs.prev_hunk, "Prev Hunk")
+-- 🧩 действия с кусками (hunks)
+map("n", "<leader>hs", gs.stage_hunk, "Stage Hunk")
+map("n", "<leader>hr", gs.reset_hunk, "Reset Hunk")
+map("v", "<leader>hs", function()
+	gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+end, "Stage Selection")
+map("v", "<leader>hr", function()
+	gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+end, "Reset Selection")
+-- 📦 файл целиком
+map("n", "<leader>hS", gs.stage_buffer, "Stage Buffer")
+map("n", "<leader>hR", gs.reset_buffer, "Reset Buffer")
+-- 👀 просмотр
+map("n", "<leader>hp", gs.preview_hunk, "Preview Hunk")
+map("n", "<leader>hb", function()
+	gs.blame_line({ full = true })
+end, "Blame Line")
+-- 🔍 diff
+map("n", "<leader>hd", gs.diffthis, "Diff This")
+map("n", "<leader>hD", function()
+	gs.diffthis("~")
+end, "Diff ~")
+-- ❌ toggle
+map("n", "<leader>ht", gs.toggle_current_line_blame, "Toggle Blame")
 
 --[[ Убираем подсветку поиска по Esc ]]
 map("n", "<Esc>", ":nohlsearch<Bar>:echo<CR>", { silent = true })

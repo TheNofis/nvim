@@ -33,6 +33,11 @@ require("lazy").setup({
 		build = ":TSUpdate",
 	},
 
+	{
+		"lewis6991/gitsigns.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+	},
+
 	{ "mason-org/mason.nvim", cmd = "Mason" },
 	{ "mason-org/mason-lspconfig.nvim", cmd = "Mason" },
 	{ "mason-org/mason-registry", cmd = "Mason" },
