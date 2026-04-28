@@ -1,3 +1,6 @@
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 -- Basic
 require("core.plugins")
 require("core.mappings")
@@ -23,7 +26,6 @@ require("plugins.nvim-ts-autotag")
 --FITCH
 require("plugins.cmp")
 require("plugins.mason")
-require("plugins.comments")
 require("plugins.codeium")
 require("plugins.gitsigns")
 require("plugins.codex")

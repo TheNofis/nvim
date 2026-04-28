@@ -43,6 +43,8 @@ vim.lsp.config("ts_ls", {
 		local root = vim.fs.root(bufnr, { ".git" })
 		if root then
 			on_dir(root)
+		else
+			on_dir(vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr)))
 		end
 	end,
 	init_options = {

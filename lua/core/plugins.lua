@@ -39,8 +39,6 @@ require("lazy").setup({
 	},
 
 	{ "mason-org/mason.nvim", cmd = "Mason" },
-	{ "mason-org/mason-lspconfig.nvim", cmd = "Mason" },
-	{ "mason-org/mason-registry", cmd = "Mason" },
 
 	{
 		"ray-x/lsp_signature.nvim",
@@ -137,16 +135,14 @@ require("lazy").setup({
 	},
 
 	{
-		"numToStr/Comment.nvim",
+		"nvim-mini/mini.comment",
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			"JoosepAlviste/nvim-ts-context-commentstring",
 		},
 		config = function()
-			require("Comment").setup({
-				pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-			})
+			require("plugins.comment")
 		end,
-		keys = { "<Leader>/", "<Leader>/" },
 	},
 
 	{
@@ -192,26 +188,6 @@ require("lazy").setup({
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			require("todo-comments").setup()
-		end,
-	},
-
-	{
-		"pmizio/typescript-tools.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require("typescript-tools").setup({
-				settings = {
-					tsserver_file_preferences = {
-						includeInlayParameterNameHints = "all",
-						includeCompletionsForModuleExports = true,
-						quotePreference = "auto",
-					},
-					tsserver_format_options = {
-						allowIncompleteCompletions = true,
-						allowRenameOfImportPath = true,
-					},
-				},
-			})
 		end,
 	},
 

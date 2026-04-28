@@ -32,8 +32,6 @@ for _, name in ipairs(mason_packages) do
 end
 
 -- LSP конфигурации
-vim.lsp.config("html", {})
-
 vim.lsp.config("lua_ls", {
 	settings = {
 		Lua = {
@@ -44,14 +42,6 @@ vim.lsp.config("lua_ls", {
 	},
 })
 
-vim.lsp.config("ts_ls", {})
-
-vim.lsp.config("prismals", {})
-
--- Включение серверов
-vim.lsp.enable({
-	"html",
-	"lua_ls",
-	"ts_ls",
-	"prismals",
-})
+-- Включение только lua_ls здесь.
+-- Остальные LSP (html/css/ts/prisma/...) подключаются централизованно в lua/plugins/lsp.lua.
+vim.lsp.enable({ "lua_ls" })
