@@ -1,7 +1,6 @@
 local cmp = require("cmp")
 local types = require("cmp.types")
 
-require("luasnip.loaders.from_vscode").lazy_load()
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -47,7 +46,6 @@ cmp.setup({
 			end,
 		},
 		{ name = "buffer" },
-		{ name = "codeium" },
 	}),
 })
 

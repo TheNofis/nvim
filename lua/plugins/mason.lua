@@ -1,5 +1,6 @@
 local mason = require("mason")
 local registry = require("mason-registry")
+local uv = vim.uv or vim.loop
 
 mason.setup({
 	ui = {
@@ -22,12 +23,21 @@ local mason_packages = {
 	"prettierd",
 }
 
--- Установка через mason
-for _, name in ipairs(mason_packages) do
-	local ok, pkg = pcall(registry.get_package, name)
+-- Установка через mason только при первом запуске
+local marker = vim.fn.stdpath("state") .. "/mason_first_install_done"
+if not uv.fs_stat(marker) then
+	for _, name in ipairs(mason_packages) do
+		local ok, pkg = pcall(registry.get_package, name)
 
-	if ok and not pkg:is_installed() then
-		pkg:install()
+		if ok and not pkg:is_installed() then
+			pkg:install()
+		end
+	end
+
+	local fd = uv.fs_open(marker, "w", 420)
+	if fd then
+		uv.fs_write(fd, tostring(os.time()), -1)
+		uv.fs_close(fd)
 	end
 end
 

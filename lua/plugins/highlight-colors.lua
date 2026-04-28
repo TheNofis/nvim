@@ -48,5 +48,12 @@ require("nvim-highlight-colors").setup({
 	exclude_filetypes = {},
 	exclude_buftypes = {},
 	-- Exclude buffer from highlighting e.g. 'exclude_buffer = function(bufnr) return vim.fn.getfsize(vim.api.nvim_buf_get_name(bufnr)) > 1000000 end'
-	exclude_buffer = function(bufnr) end,
+	exclude_buffer = function(bufnr)
+		local name = vim.api.nvim_buf_get_name(bufnr)
+		if name == "" then
+			return false
+		end
+
+		return vim.fn.getfsize(name) > 1000000
+	end,
 })

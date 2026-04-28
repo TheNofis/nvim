@@ -25,7 +25,6 @@ require("nvim-treesitter").setup({
 		"gitignore",
 		"go",
 	},
-	context_commentstring = { enable = true, enable_autocmd = false },
 	highlight = {
 		enable = true,
 		additional_vim_regex_highlighting = false,

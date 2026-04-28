@@ -213,15 +213,6 @@ require("lazy").setup({
 	},
 
 	{
-		"rbong/vim-flog",
-		lazy = true,
-		cmd = { "Flog", "Flogsplit", "Floggit" },
-		dependencies = {
-			"tpope/vim-fugitive",
-		},
-	},
-
-	{
 		"neanias/everforest-nvim",
 		version = false,
 		lazy = false,
