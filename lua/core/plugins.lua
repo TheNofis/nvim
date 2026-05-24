@@ -38,7 +38,8 @@ require("lazy").setup({
 		event = { "BufReadPre", "BufNewFile" },
 	},
 
-	{ "mason-org/mason.nvim", cmd = "Mason" },
+	{ "mason-org/mason.nvim", event = { "BufReadPre", "BufNewFile" } },
+	{ "neovim/nvim-lspconfig", event = { "BufReadPre", "BufNewFile" } },
 
 	{
 		"ray-x/lsp_signature.nvim",
