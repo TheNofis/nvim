@@ -1,6 +1,5 @@
 local mason = require("mason")
 local registry = require("mason-registry")
-local uv = vim.uv or vim.loop
 
 mason.setup({
 	ui = {
@@ -15,29 +14,24 @@ mason.setup({
 -- Mason packages (имена mason)
 local mason_packages = {
 	"html-lsp",
+	"css-lsp",
 	"lua-language-server",
 	"typescript-language-server",
+	"eslint-lsp",
+	"tailwindcss-language-server",
 	"emmet-language-server",
 	"prisma-language-server",
 	"stylua",
 	"prettierd",
 }
 
--- Установка через mason только при первом запуске
-local marker = vim.fn.stdpath("state") .. "/mason_first_install_done"
-if not uv.fs_stat(marker) then
-	for _, name in ipairs(mason_packages) do
-		local ok, pkg = pcall(registry.get_package, name)
+-- Проверяем пакеты на каждом старте: marker-based схема не ставит новые пакеты,
+-- добавленные позже в конфиг.
+for _, name in ipairs(mason_packages) do
+	local ok, pkg = pcall(registry.get_package, name)
 
-		if ok and not pkg:is_installed() then
-			pkg:install()
-		end
-	end
-
-	local fd = uv.fs_open(marker, "w", 420)
-	if fd then
-		uv.fs_write(fd, tostring(os.time()), -1)
-		uv.fs_close(fd)
+	if ok and not pkg:is_installed() then
+		pkg:install()
 	end
 end
 

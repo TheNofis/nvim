@@ -14,11 +14,11 @@ vim.filetype.add({
 })
 
 vim.lsp.config("cssls", {
-	filetypes = { "css", "html", "javascript", "javascriptreact", "typescript", "typescriptreact" },
+	filetypes = { "css", "scss", "less" },
 })
 
 vim.lsp.config("html", {
-	filetypes = { "html", "javascript", "javascriptreact", "typescript", "typescriptreact" },
+	filetypes = { "html", "templ" },
 })
 
 vim.lsp.config("emmet_language_server", {
@@ -38,9 +38,15 @@ vim.lsp.config("emmet_language_server", {
 })
 
 vim.lsp.config("ts_ls", {
-	-- Эквивалент старого lspconfig.util.find_git_ancestor
+	-- Предпочитаем tsconfig/jsconfig/package.json (лучше для monorepo Nest+Next),
+	-- и только потом fallback на .git.
 	root_dir = function(bufnr, on_dir)
-		local root = vim.fs.root(bufnr, { ".git" })
+		local root = vim.fs.root(bufnr, {
+			"tsconfig.json",
+			"jsconfig.json",
+			"package.json",
+			".git",
+		})
 		if root then
 			on_dir(root)
 		else
@@ -57,12 +63,33 @@ vim.lsp.config("ts_ls", {
 	end,
 })
 
+vim.lsp.config("eslint", {
+	on_attach = function(client, _)
+		client.server_capabilities.documentFormattingProvider = false
+	end,
+})
+
+vim.lsp.config("tailwindcss", {
+	filetypes = {
+		"css",
+		"scss",
+		"sass",
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact",
+		"html",
+	},
+})
+
 -- prismals и clangd можно просто включить без override'ов
 vim.lsp.enable({
 	"cssls",
 	"html",
 	"emmet_language_server",
 	"ts_ls",
+	"eslint",
+	"tailwindcss",
 	"prismals",
 	"clangd",
 })
