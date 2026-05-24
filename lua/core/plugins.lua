@@ -227,9 +227,39 @@ require("lazy").setup({
 	},
 
 	{
-		"kkrampis/codex.nvim",
-		lazy = true,
-		cmd = { "Codex", "CodexToggle" }, -- Optional: Load only on command execution
+		"olimorris/codecompanion.nvim",
+		event = "VeryLazy",
+		cmd = { "CodeCompanion", "CodeCompanionChat", "CodeCompanionActions", "CodeCompanionCLI" },
+		version = "^19.0.0",
+		opts = {
+			interactions = {
+				chat = {
+					adapter = "codex",
+				},
+				cli = {
+					agent = "codex",
+				},
+			},
+			adapters = {
+				acp = {
+					codex = function()
+						return require("codecompanion.adapters").extend("codex", {
+							commands = {
+								default = { "codex-acp" },
+							},
+							defaults = {
+								auth_method = "chatgpt",
+							},
+						})
+					end,
+				},
+			},
+		},
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
 	},
 
 	{

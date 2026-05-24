@@ -28,7 +28,6 @@ require("plugins.cmp")
 require("plugins.mason")
 require("plugins.codeium")
 require("plugins.gitsigns")
-require("plugins.codex")
 
 --LINTER
 require("plugins.lsp")

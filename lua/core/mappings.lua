@@ -28,6 +28,7 @@ map("n", "<c-l>", ":wincmd l<CR>", { noremap = true, silent = true })
 --[[ GIT ]]
 map("n", "<Leader>gs", ":Telescope git_status<CR>", { noremap = true, silent = true })
 map("n", "<Leader>gc", ":Telescope git_commits<CR>", { noremap = true, silent = true })
+map("n", "<Leader>gb", ":Telescope git_branches<CR>", { noremap = true, silent = true })
 
 --[[ Убираем подсветку поиска по Esc ]]
 map("n", "<Esc>", ":nohlsearch<Bar>:echo<CR>", { silent = true })
@@ -41,7 +42,10 @@ map("n", "<leader>t", "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = tr
 map("v", "<Tab>", ">gv", { noremap = true, silent = true })
 map("v", "<S-Tab>", "<gv", { noremap = true, silent = true })
 
-map("n", "<leader>cc", "<cmd>CodexToggle<CR>", { noremap = true, silent = true })
+map("n", "<leader>aa", "<cmd>CodeCompanionChat Toggle adapter=codex<CR>", { noremap = true, silent = true })
+map("n", "<leader>ai", "<cmd>CodeCompanion<CR>", { noremap = true, silent = true })
+map("v", "<leader>ai", "<cmd>CodeCompanion<CR>", { noremap = true, silent = true })
+map("n", "<leader>ac", "<cmd>CodeCompanionCLI <CR>", { noremap = true, silent = true })
 
 --[[ Удаление без сохранения в регистр ]]
 vim.keymap.set("n", "<c-x>", '"_dd')
