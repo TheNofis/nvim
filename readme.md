@@ -153,6 +153,7 @@ codex login
 - `<leader>aa` open/toggle CodeCompanion chat with Codex
 - `<leader>ai` inline action (normal/visual)
 - `<leader>ac` open CodeCompanion CLI interaction
+- `<leader>ar` open CodeCompanion action palette
 
 ## Git and Merge Conflicts
 
@@ -163,6 +164,36 @@ Keymaps:
 - `<leader>gd` open Diffview
 - `<leader>gD` close Diffview
 - `<leader>gh` file history for current file
+- `<leader>gH` repository history
+- `<leader>gp` preview hunk
+- `<leader>gn` / `<leader>gN` next/previous hunk
+
+## Keymap Groups
+
+Search:
+- `<leader>ff` find files
+- `<leader>fg` live grep
+- `<leader>fb` buffers
+- `<leader>fr` resume telescope
+- `<leader>fh` help tags
+- `<leader>fs` document symbols
+- `<leader>fS` workspace symbols
+- `<leader>fk` keymaps
+
+LSP:
+- `gd` definition
+- `gr` references
+- `gD` declaration
+- `gi` implementation
+- `K` hover
+- `[d` / `]d` previous/next diagnostic
+- `<leader>la` code action (normal/visual)
+- `<leader>lr` rename
+- `<leader>lf` format buffer
+- `<leader>ld` line diagnostics float
+- `<leader>lD` diagnostics to loclist
+- `<leader>li` LSP info
+- `<leader>lR` restart LSP
 
 Typical conflict workflow:
 
