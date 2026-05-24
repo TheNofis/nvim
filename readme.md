@@ -24,6 +24,30 @@ Production-oriented Neovim setup for fullstack development with:
   - `codecompanion.nvim`
   - Codex ACP adapter
 
+## Architecture
+
+The configuration is split by responsibility. `init.lua` only wires the layers together and does not contain plugin logic.
+
+```text
+~/.config/nvim
+├── init.lua
+├── lua
+│   ├── core        # editor platform: bootstrap, globals, options, keymaps, autocmds, health
+│   ├── plugins     # lazy.nvim specs grouped by domain
+│   ├── config      # runtime setup for individual plugins
+│   ├── lang        # language-specific LSP rules
+│   └── utils       # small shared helpers
+└── scripts         # maintenance and healthcheck scripts
+```
+
+Layer rules:
+
+- Put editor-level behavior in `lua/core`.
+- Put plugin declarations only in `lua/plugins`.
+- Put plugin `.setup()` implementations in `lua/config`.
+- Put language-specific server settings in `lua/lang`.
+- Keep `init.lua` as an entrypoint only.
+
 ## Prerequisites
 
 Install required system packages:

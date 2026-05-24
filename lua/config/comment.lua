@@ -1,3 +1,5 @@
+local M = {}
+
 local function is_probably_jsx_line(row)
 	local line = vim.fn.getline(row)
 	if type(line) ~= "string" or line == "" then
@@ -16,17 +18,29 @@ local function in_jsx_context(location)
 	local row = location[1]
 	local col = location[2]
 	local range = { row, col, row, col }
-	local lang_tree = parser:language_for_range(range)
-	if not lang_tree then
-		return false
+	local node = nil
+
+	local ok_lang, lang_tree = pcall(parser.language_for_range, parser, range)
+	if ok_lang and type(lang_tree) == "table" then
+		local ok_root, root = pcall(function()
+			if type(lang_tree.root) == "function" then
+				return lang_tree:root()
+			end
+			return nil
+		end)
+
+		if ok_root and root and type(root.named_descendant_for_range) == "function" then
+			node = root:named_descendant_for_range(row, col, row, col)
+		end
 	end
 
-	local root = lang_tree:root()
-	if not root then
-		return false
+	if node == nil and type(vim.treesitter.get_node) == "function" then
+		local ok_node, ts_node = pcall(vim.treesitter.get_node, { bufnr = 0, pos = { row, col } })
+		if ok_node then
+			node = ts_node
+		end
 	end
 
-	local node = root:named_descendant_for_range(row, col, row, col)
 	while node do
 		local t = node:type()
 		if t == "jsx_element" or t == "jsx_fragment" or t == "jsx_opening_element" or t == "jsx_closing_element" then
@@ -76,26 +90,47 @@ local function resolve_commentstring(ref_position)
 	return vim.bo.commentstring
 end
 
-local ts_languages = require("ts_context_commentstring.config").get_languages_config()
-local tsx_comment_config = ts_languages.tsx or ts_languages.javascript
+function M.setup()
+	local ts_languages = require("ts_context_commentstring.config").get_languages_config()
+	local tsx_comment_config = ts_languages.tsx or ts_languages.javascript
 
-require("ts_context_commentstring").setup({
-	enable_autocmd = false,
-	languages = {
-		ecma = tsx_comment_config,
-		jsx = tsx_comment_config,
-		tsx = tsx_comment_config,
-	},
-})
+	require("ts_context_commentstring").setup({
+		enable_autocmd = false,
+		languages = {
+			ecma = tsx_comment_config,
+			jsx = tsx_comment_config,
+			tsx = tsx_comment_config,
+		},
+	})
 
-require("mini.comment").setup({
-	mappings = {
-		comment = "<leader>/",
-		comment_line = "<leader>/",
-		comment_visual = "<leader>/",
-		textobject = "gc",
-	},
-	options = {
-		custom_commentstring = resolve_commentstring,
-	},
-})
+	require("mini.comment").setup({
+		mappings = {
+			comment = "",
+			comment_line = "",
+			comment_visual = "",
+			textobject = "gc",
+		},
+		options = {
+			custom_commentstring = resolve_commentstring,
+		},
+	})
+
+	vim.keymap.set("n", "<leader>/", function()
+		local line = vim.fn.line(".")
+		require("mini.comment").toggle_lines(line, line, { ref_position = { line, vim.fn.col(".") } })
+	end, { desc = "Toggle comment line", silent = true })
+
+	vim.keymap.set("x", "<leader>/", function()
+		local start_line = vim.fn.line("v")
+		local end_line = vim.fn.line(".")
+		if start_line > end_line then
+			start_line, end_line = end_line, start_line
+		end
+
+		require("mini.comment").toggle_lines(start_line, end_line, {
+			ref_position = { start_line, vim.fn.col("v") },
+		})
+	end, { desc = "Toggle comment selection", silent = true })
+end
+
+return M
