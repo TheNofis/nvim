@@ -105,6 +105,13 @@ require("lazy").setup({
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		ft = { "markdown" },
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		opts = {},
+	},
+
 	{ "akinsho/toggleterm.nvim", version = "*", cmd = { "ToggleTerm", "TermExec" }, config = true },
 
 	{ "stevearc/conform.nvim", cmd = { "ConformInfo", "ConformSync" } },
