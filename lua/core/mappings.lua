@@ -29,6 +29,9 @@ map("n", "<c-l>", ":wincmd l<CR>", { noremap = true, silent = true })
 map("n", "<Leader>gs", ":Telescope git_status<CR>", { noremap = true, silent = true })
 map("n", "<Leader>gc", ":Telescope git_commits<CR>", { noremap = true, silent = true })
 map("n", "<Leader>gb", ":Telescope git_branches<CR>", { noremap = true, silent = true })
+map("n", "<Leader>gd", ":DiffviewOpen<CR>", { noremap = true, silent = true })
+map("n", "<Leader>gD", ":DiffviewClose<CR>", { noremap = true, silent = true })
+map("n", "<Leader>gh", ":DiffviewFileHistory %<CR>", { noremap = true, silent = true })
 
 --[[ Убираем подсветку поиска по Esc ]]
 map("n", "<Esc>", ":nohlsearch<Bar>:echo<CR>", { silent = true })

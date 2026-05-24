@@ -95,6 +95,16 @@ require("lazy").setup({
 		},
 	},
 
+	{
+		"sindrets/diffview.nvim",
+		cmd = {
+			"DiffviewOpen",
+			"DiffviewClose",
+			"DiffviewFileHistory",
+		},
+		dependencies = { "nvim-lua/plenary.nvim" },
+	},
+
 	{ "akinsho/toggleterm.nvim", version = "*", cmd = { "ToggleTerm", "TermExec" }, config = true },
 
 	{ "stevearc/conform.nvim", cmd = { "ConformInfo", "ConformSync" } },
