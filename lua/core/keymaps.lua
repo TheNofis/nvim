@@ -1,5 +1,36 @@
 local map = require("utils.map").set
 
+local function close_current_buffer()
+	local current = vim.api.nvim_get_current_buf()
+	local listed = vim.fn.getbufinfo({ buflisted = 1 })
+
+	if #listed <= 1 then
+		vim.cmd("enew")
+	end
+
+	local alternate = vim.fn.bufnr("#")
+	local target = nil
+
+	if alternate > 0 and vim.api.nvim_buf_is_valid(alternate) and vim.bo[alternate].buflisted then
+		target = alternate
+	else
+		for _, info in ipairs(vim.fn.getbufinfo({ buflisted = 1 })) do
+			if info.bufnr ~= current then
+				target = info.bufnr
+				break
+			end
+		end
+	end
+
+	if target and vim.api.nvim_buf_is_valid(target) then
+		for _, win in ipairs(vim.fn.win_findbuf(current)) do
+			vim.api.nvim_win_set_buf(win, target)
+		end
+	end
+
+	vim.cmd("bdelete " .. current)
+end
+
 map("n", "<Leader>e", "<cmd>Neotree toggle<CR>", "Toggle file tree")
 map("n", "<Leader>ge", "<cmd>Neotree toggle source=git_status<CR>", "Toggle git tree")
 
@@ -8,7 +39,7 @@ map("n", "<C-q>", "<cmd>q<CR>", "Quit window")
 
 map("n", "<Tab>", "<Plug>(cokeline-focus-next)", nil, { noremap = false })
 map("n", "<S-Tab>", "<Plug>(cokeline-focus-prev)", nil, { noremap = false })
-map("n", "<Leader>x", "<cmd>bdelete<CR><cmd>bNext<CR>", "Close buffer")
+map("n", "<Leader>x", close_current_buffer, "Close current buffer")
 
 map("n", "<C-right>", "<cmd>vertical resize -5<CR>", "Shrink window width")
 map("n", "<C-left>", "<cmd>vertical resize +5<CR>", "Grow window width")

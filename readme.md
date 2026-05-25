@@ -185,13 +185,23 @@ LSP:
 - `gr` references
 - `gD` declaration
 - `gi` implementation
+- `gy` type definition
+- `<leader>lm` implementation (leader alias)
 - `K` hover
 - `[d` / `]d` previous/next diagnostic
 - `<leader>la` code action (normal/visual)
 - `<leader>lr` rename
 - `<leader>lf` format buffer
+- `<leader>lk` signature help
+- `<leader>ls` document symbols
+- `<leader>lS` workspace symbols
 - `<leader>ld` line diagnostics float
 - `<leader>lD` diagnostics to loclist
+- `<leader>lq` diagnostics to quickfix
+- `<leader>lw` add workspace folder
+- `<leader>lW` remove workspace folder
+- `<leader>ll` list workspace folders
+- `<leader>lh` toggle inlay hints
 - `<leader>li` LSP info
 - `<leader>lR` restart LSP
 
