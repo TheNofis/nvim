@@ -75,7 +75,14 @@ return {
 			require("config.highlight_colors").setup()
 		end,
 	},
-	{ "HiPhish/rainbow-delimiters.nvim", event = "BufReadPost" },
+	{
+		"HiPhish/rainbow-delimiters.nvim",
+		event = "BufReadPost",
+		init = function()
+			-- Parens only in TSX, so tag names keep the component/HTML colors.
+			vim.g.rainbow_delimiters = { query = { tsx = "rainbow-parens" } }
+		end,
+	},
 	{
 		"petertriho/nvim-scrollbar",
 		event = "BufReadPost",

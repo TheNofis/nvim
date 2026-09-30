@@ -32,6 +32,12 @@ return {
 	},
 	{ "folke/which-key.nvim", event = "VeryLazy" },
 	{
+		"razak17/tailwind-fold.nvim",
+		ft = { "html", "javascriptreact", "typescriptreact", "svelte", "vue", "astro" },
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		opts = { min_chars = 40, highlight = { fg = "#8E8E93" } },
+	},
+	{
 		"MagicDuck/grug-far.nvim",
 		cmd = "GrugFar",
 		opts = {},
