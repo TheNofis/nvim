@@ -1,5 +1,5 @@
 vim.api.nvim_create_user_command("NvimConfigHealth", function()
-	local required = { "git", "rg", "node", "npm", "codex", "codex-acp" }
+	local required = { "git", "rg", "node", "npm", "codex", "codex-acp", "lazygit" }
 
 	for _, bin in ipairs(required) do
 		local ok = vim.fn.executable(bin) == 1

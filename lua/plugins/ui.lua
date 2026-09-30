@@ -43,19 +43,30 @@ return {
 		},
 	},
 	{
-		"rcarriga/nvim-notify",
-		event = "VeryLazy",
-		config = function()
-			require("config.notify").setup()
+		"folke/snacks.nvim",
+		priority = 1000,
+		lazy = false,
+		opts = function()
+			return require("config.snacks").opts()
+		end,
+		keys = function()
+			return require("config.snacks").keys()
 		end,
 	},
 	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
-		dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
-		config = function()
-			require("noice").setup({})
-		end,
+		dependencies = { "MunifTanjim/nui.nvim" },
+		opts = {
+			-- vim.notify is owned by snacks.notifier, signature help by blink.cmp.
+			notify = { enabled = false },
+			lsp = { signature = { enabled = false } },
+		},
+	},
+	{
+		"echasnovski/mini.statusline",
+		event = "VeryLazy",
+		opts = {},
 	},
 	{
 		"brenoprata10/nvim-highlight-colors",
@@ -70,13 +81,6 @@ return {
 		event = "BufReadPost",
 		config = function()
 			require("scrollbar").setup()
-		end,
-	},
-	{
-		"karb94/neoscroll.nvim",
-		event = "WinScrolled",
-		config = function()
-			require("config.neoscroll").setup()
 		end,
 	},
 	{

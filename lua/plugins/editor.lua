@@ -1,27 +1,9 @@
 return {
 	{
-		"akinsho/toggleterm.nvim",
-		version = "*",
-		cmd = { "ToggleTerm", "TermExec" },
-		keys = {
-			{ "<F7>", "<cmd>ToggleTerm<cr>", desc = "Toggle terminal" },
-		},
-		config = function()
-			require("config.toggleterm").setup()
-		end,
-	},
-	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 		config = function()
 			require("nvim-autopairs").setup()
-		end,
-	},
-	{
-		"echasnovski/mini.indentscope",
-		event = "BufReadPre",
-		config = function()
-			require("mini.indentscope").setup({ symbol = "│", draw = { delay = 0 } })
 		end,
 	},
 	{
@@ -49,6 +31,39 @@ return {
 		dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
 	},
 	{ "folke/which-key.nvim", event = "VeryLazy" },
+	{
+		"MagicDuck/grug-far.nvim",
+		cmd = "GrugFar",
+		opts = {},
+		keys = {
+			{ "<leader>fR", "<cmd>GrugFar<cr>", desc = "Search & replace (project)" },
+			{
+				"<leader>fR",
+				function()
+					require("grug-far").with_visual_selection()
+				end,
+				mode = "x",
+				desc = "Search & replace selection",
+			},
+		},
+	},
+	{
+		"folke/persistence.nvim",
+		event = "BufReadPre",
+		opts = {},
+		keys = {
+			{ "<leader>qs", function() require("persistence").load() end, desc = "Restore session (cwd)" },
+			{ "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore last session" },
+			{ "<leader>qS", function() require("persistence").select() end, desc = "Select session" },
+			{ "<leader>qd", function() require("persistence").stop() end, desc = "Don't save this session" },
+		},
+	},
+	{
+		"vuki656/package-info.nvim",
+		event = "BufRead package.json",
+		dependencies = { "MunifTanjim/nui.nvim" },
+		opts = {},
+	},
 	{
 		"folke/todo-comments.nvim",
 		event = "BufReadPost",

@@ -16,8 +16,8 @@ vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.smartindent = true
 vim.opt.ignorecase = true
-vim.opt.smartcase = false
-vim.opt.laststatus = 0
+vim.opt.smartcase = true
+vim.opt.laststatus = 3
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
@@ -25,4 +25,4 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.signcolumn = "yes"
 
-vim.g.formatoptions = "qrn1"
+vim.opt.formatoptions = "qrn1"
