@@ -52,6 +52,20 @@ function M.setup()
 			hl(name, { fg = color })
 		end
 	end
+
+	-- Rainbow levels: calm tones only; red reads as an error.
+	local rainbow = {
+		Red = punct,
+		Yellow = "#C9B77A",
+		Blue = "#6AA8D8",
+		Orange = "#A08BC9",
+		Green = "#7FAFA3",
+		Violet = "#B08FA8",
+		Cyan = "#8FA3B8",
+	}
+	for name, color in pairs(rainbow) do
+		hl("RainbowDelimiter" .. name, { fg = color })
+	end
 end
 
 return M
