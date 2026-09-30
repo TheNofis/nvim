@@ -47,6 +47,17 @@ end, "Previous hunk")
 
 map("n", "<Esc>", "<cmd>nohlsearch<Bar>echo<CR>", nil)
 
+-- * / # only highlight the word under cursor; then n always goes down, N up.
+local function highlight_word()
+	local pattern = "\\<" .. vim.fn.expand("<cword>") .. "\\>"
+	vim.fn.setreg("/", pattern)
+	vim.fn.histadd("/", pattern)
+	vim.v.searchforward = 1
+	vim.o.hlsearch = true
+end
+map("n", "*", highlight_word, "Highlight word under cursor")
+map("n", "#", highlight_word, "Highlight word under cursor")
+
 map("v", "<Tab>", ">gv", "Indent selection")
 map("v", "<S-Tab>", "<gv", "Outdent selection")
 
