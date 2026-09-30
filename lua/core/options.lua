@@ -20,6 +20,7 @@ vim.opt.smartcase = true
 vim.opt.laststatus = 3
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+vim.opt.foldlevelstart = 99
 
 vim.wo.number = true
 vim.wo.relativenumber = true
