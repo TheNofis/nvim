@@ -1,15 +1,15 @@
 return {
 	{
+		-- main branch does not support lazy-loading.
 		"nvim-treesitter/nvim-treesitter",
-		event = { "BufReadPost", "BufNewFile" },
-		cmd = { "TSInstall", "TSUpdate", "TSUninstall", "TSInstallInfo" },
+		branch = "main",
+		lazy = false,
 		build = ":TSUpdate",
 		config = function()
 			require("config.treesitter").setup()
 		end,
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter-textobjects",
-			"windwp/nvim-ts-autotag",
+			{ "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
 		},
 	},
 	{
