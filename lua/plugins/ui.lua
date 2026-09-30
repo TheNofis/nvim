@@ -1,14 +1,5 @@
 return {
 	{
-		"neanias/everforest-nvim",
-		version = false,
-		lazy = false,
-		priority = 1000,
-		config = function()
-			require("config.colorscheme").setup()
-		end,
-	},
-	{
 		"DaikyXendo/nvim-material-icon",
 		lazy = false,
 		config = function()
