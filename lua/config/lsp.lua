@@ -2,6 +2,7 @@ local M = {}
 
 local language_modules = {
 	"lang.typescript",
+	"lang.data",
 	"lang.lua",
 	"lang.prisma",
 	"lang.c_cpp",
@@ -23,16 +24,17 @@ local function merge_servers()
 end
 
 function M.setup()
-	local capabilities = vim.lsp.protocol.make_client_capabilities()
-	capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-
 	vim.lsp.config("*", {
-		capabilities = capabilities,
+		capabilities = require("blink.cmp").get_lsp_capabilities(),
 	})
 
 	vim.filetype.add({
 		extension = {
 			dsc = "yaml",
+		},
+		pattern = {
+			["docker%-compose.*%.ya?ml"] = "yaml.docker-compose",
+			["compose%.ya?ml"] = "yaml.docker-compose",
 		},
 	})
 
@@ -58,8 +60,8 @@ function M.setup()
 	vim.api.nvim_create_autocmd("LspAttach", {
 		group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
 		callback = function(args)
-			local map = function(lhs, rhs, desc)
-				vim.keymap.set("n", lhs, rhs, { buffer = args.buf, desc = desc })
+			local map = function(lhs, rhs, desc, opts)
+				vim.keymap.set("n", lhs, rhs, vim.tbl_extend("force", { buffer = args.buf, desc = desc }, opts or {}))
 			end
 			local map_both = function(lhs, rhs, desc)
 				vim.keymap.set({ "n", "x" }, lhs, rhs, { buffer = args.buf, desc = desc })
@@ -84,7 +86,8 @@ function M.setup()
 			end
 
 			map("gd", vim.lsp.buf.definition, "LSP definition")
-			map("gr", vim.lsp.buf.references, "LSP references")
+			-- nowait: don't pause for the built-in grn/gra/grr/gri maps.
+			map("gr", vim.lsp.buf.references, "LSP references", { nowait = true })
 			map("gD", vim.lsp.buf.declaration, "LSP declaration")
 			map("gy", vim.lsp.buf.type_definition, "LSP type definition")
 			map("gi", map_implementation_with_fallback, "LSP implementation (fallback to definition)")

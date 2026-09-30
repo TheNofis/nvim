@@ -1,21 +1,28 @@
 return {
 	{
-		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
-		config = function()
-			require("config.cmp").setup()
-		end,
-		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-cmdline",
-			"saadparwaiz1/cmp_luasnip",
+		"saghen/blink.cmp",
+		version = "1.*",
+		event = { "InsertEnter", "CmdlineEnter" },
+		dependencies = { "L3MON4D3/LuaSnip" },
+		opts = {
+			keymap = {
+				preset = "enter",
+				["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+				["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+			},
+			snippets = { preset = "luasnip" },
+			sources = { default = { "lsp", "path", "snippets", "buffer" } },
+			completion = {
+				menu = { border = "rounded" },
+				documentation = { auto_show = true, window = { border = "rounded" } },
+			},
+			signature = { enabled = true, window = { border = "rounded" } },
+			fuzzy = { implementation = "prefer_rust_with_warning" },
 		},
 	},
 	{
 		"L3MON4D3/LuaSnip",
-		event = "InsertEnter",
+		lazy = true,
 		config = function()
 			require("config.luasnip").setup()
 		end,
@@ -30,9 +37,6 @@ return {
 		config = function()
 			require("config.codeium").setup()
 		end,
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"hrsh7th/nvim-cmp",
-		},
+		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 }

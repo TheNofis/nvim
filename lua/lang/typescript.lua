@@ -34,12 +34,11 @@ function M.servers()
 				showSuggestionsAsSnippets = true,
 			},
 		},
-		ts_ls = {
+		vtsls = {
 			root_dir = project_root,
-			init_options = {
-				preferences = {
-					importModuleSpecifierPreference = "non-relative",
-				},
+			settings = {
+				typescript = { preferences = { importModuleSpecifier = "non-relative" } },
+				javascript = { preferences = { importModuleSpecifier = "non-relative" } },
 			},
 			on_attach = function(client)
 				client.server_capabilities.documentFormattingProvider = false
@@ -66,7 +65,7 @@ function M.servers()
 end
 
 function M.enabled()
-	return { "cssls", "html", "emmet_language_server", "ts_ls", "eslint", "tailwindcss" }
+	return { "cssls", "html", "emmet_language_server", "vtsls", "eslint", "tailwindcss" }
 end
 
 return M
